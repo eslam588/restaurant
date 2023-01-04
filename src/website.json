@@ -20,6 +20,6 @@
   "whatsapp":"https://wa.me/971502385613",
   "call":"tel:0502385613",
   "language": [
-    {"en":"en","def":true},{ "ar": "عربى" }],
+    {"en":"en","def":true}],
   "currency":[{ "en": "AED" }, { "ar": "د.إ" }]
 }

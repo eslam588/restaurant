@@ -5,9 +5,10 @@ import { Modal, useModal} from "@nextui-org/react";
 import CartModal from '../CartModal/CartModal';
 import wesite from "../../website.json"
 import "./basket.css"
+import { useTranslation} from 'react-i18next';
 
 const Basket = ({showbasket}) => {
-
+  const [t,i18n] = useTranslation()
   const cartState = useSelector((state) => state.cart);
   let {cartItemsnum , totalCount} = cartState; 
   const { setVisible, bindings } = useModal();
@@ -32,9 +33,9 @@ const Basket = ({showbasket}) => {
         <small className="basket-error mb-2 px-4 visually-hidden"></small>
         <div id="view-basket" className={`cart ${showbasket ? "active" : ""}`}> 
         <div flat="true" auto="true" onClick={() => setVisible(true)}>
-            <div className="basket-txt">View basket</div>
+            <div className="basket-txt"> {t('basket')}</div>
             <div className="basket">
-              <span id="sum">{wesite.currency[0]["en"]} {totalCount} </span>
+              <span id="sum">{wesite.currency[0]["en"]} {totalCount.toFixed(2)} </span>
               <Cartsvg />
               <span id="count">{cartItemsnum}</span>
           </div>
@@ -58,19 +59,19 @@ const Basket = ({showbasket}) => {
             <div>
                <Locationsvg />
             </div>
-            <span>Location</span>
+            <span>{t('location')}</span>
           </a>
           <a href="https://wa.me/971502385613" target="_blank" className="whatsapp cta">
             <div>
                <Watsappsvg />
             </div>
-            <span>WhatsApp</span>
+            <span>{t('WhatsApp')}</span>
           </a>
           <a href="tel:0502385613" target="_blank" className="call cta">
             <div>
               <Callsvg />
             </div>
-            <span>Call</span>
+            <span>{t('Call')}</span>
           </a>
         </div>
       </div>

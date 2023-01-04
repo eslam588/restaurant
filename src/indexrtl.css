@@ -1085,7 +1085,7 @@
   }
   .js-form-type-select:after {
     position: absolute;
-    background: url(/themes/menu/assets/images/arrow-down.svg) no-repeat;
+    /* background: url(/themes/menu/assets/images/arrow-down.svg) no-repeat; */
     content: "";
     top: 10px;
     width: 11px;

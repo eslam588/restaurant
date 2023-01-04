@@ -1,10 +1,12 @@
 import { createSlice} from "@reduxjs/toolkit";
 
+let cartStorage = JSON.parse(localStorage.getItem("cart"))
 const initialState={
-    itemsInCart:[],
-    cartItemsnum:0,
-    totalCount:0,
-    showbasket:false,
+    itemsInCart: cartStorage?.itemsInCart ? cartStorage?.itemsInCart : [],
+    cartItemsnum: cartStorage?.cartItemsnum ? cartStorage?.cartItemsnum :0,
+    totalCount: cartStorage?.totalCount ? cartStorage?.totalCount : 0,
+    showbasket: false,
+    showCartPage: false
 }
 
 const cartSlice = createSlice({
@@ -21,33 +23,50 @@ const cartSlice = createSlice({
                 state.showbasket=true
             }
             else {
-                let updatedproduct = {...action.payload,quantity:1}
+                let _id= action.payload._id
+                let name =action.payload.name
+                let price = action.payload.price
+                let updatedproduct = {_id,price,quantity:1}
                 state.itemsInCart.push(updatedproduct);
                 state.cartItemsnum += 1
-                state.totalCount+=updatedproduct.price*updatedproduct.quantity
+                state.totalCount +=updatedproduct.price*updatedproduct.quantity
                 state.showbasket=true
             }
+            let {itemsInCart,cartItemsnum,totalCount} = state
+            localStorage.setItem("cart",JSON.stringify({itemsInCart,cartItemsnum,totalCount}))
         },
         incrementCart:(state, action) =>{
             const itemInCartIndex = state.itemsInCart.findIndex((item) => item._id === action.payload._id);
             state.itemsInCart[itemInCartIndex].quantity +=1
             state.cartItemsnum +=1
-            state.totalCount += state.itemsInCart[itemInCartIndex].price          
+            state.totalCount += state.itemsInCart[itemInCartIndex].price
+            let {itemsInCart,cartItemsnum,totalCount} = state
+            localStorage.setItem("cart",JSON.stringify({itemsInCart,cartItemsnum,totalCount}))        
         },
         decrementCart:(state, action) =>{
             const itemInCartIndex = state.itemsInCart.findIndex((item) => item._id === action.payload._id);
-            if(state.itemsInCart[itemInCartIndex].quantity > 0){
+            if(state.itemsInCart[itemInCartIndex].quantity >= 1){
                 state.itemsInCart[itemInCartIndex].quantity -=1
                 state.cartItemsnum -=1
                 state.totalCount -= state.itemsInCart[itemInCartIndex].price
+                let {itemsInCart,cartItemsnum,totalCount} = state
+                localStorage.setItem("cart",JSON.stringify({itemsInCart,cartItemsnum,totalCount}))
+                if(state.itemsInCart[itemInCartIndex].quantity < 1){
+                    const updatedItemsCart = state.itemsInCart.filter((item) => item._id !== action.payload._id);
+                    state.itemsInCart=updatedItemsCart;
+                    let {itemsInCart,cartItemsnum,totalCount} = state
+                    localStorage.setItem("cart",JSON.stringify({itemsInCart,cartItemsnum,totalCount}))
+                }
             }  
         },
         showBasket:(state) => {
             if(state.cartItemsnum > 0){
                 state.showbasket=true
-            }
+                state.showCartPage=true
+            }   
             else{
                 state.showbasket=false
+                state.showCartPage=false
             }  
         }      
     }

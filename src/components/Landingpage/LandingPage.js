@@ -35,7 +35,14 @@ const LandingPage = () => {
               <h1 className="outletName pt-4">{website.name[websitnamenum][websitnamelang]}</h1>
               <small className="outletCategory text-black-300 text-xs line-normal block">
                 {
-                  website.business_types.map(business => (<span key={business[websitnamenum][websitnamelang]} >{business[websitnamenum][websitnamelang]} . </span>))
+                  website.business_types.map(business => {
+                    return <span key={business[websitnamenum][websitnamelang]}>
+                      {business[websitnamenum][websitnamelang]}
+                      {
+                        website.business_types.indexOf(business) == website.business_types.length-1 ? "" : " . "
+                      }
+                     </span>
+                  })
                 }
               </small>
             </div>

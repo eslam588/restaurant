@@ -1,16 +1,30 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {CloseSvg,IconGridSvg,IconListSvg,SearchSvg} from "../SVG/NavigatorSvg"
+import {useDispatch} from 'react-redux';
+import {filterbyName} from "../../redux/productSlice"
 
 const Navigatorbar = ({toggleShow,setToggleShow}) => {
+
    const [showsearch, setShowSearch]=useState(false)
+   const[keyword,setKeyword]=useState("")
+    const dispatch = useDispatch();
    
+   useEffect(()=> {
+       dispatch(filterbyName(keyword))
+   },[keyword])
+
+   let closeSearch = () => {
+      setShowSearch(false)
+      setKeyword("")
+   }
 
   return (
     <div className="navigation-bar shadow">
             {
                showsearch ? (
-                  <div className="filter  bg-white "><input type="text" id="product-filter"/>
-                     <button className="close-icon" onClick={() => setShowSearch(false)}>
+                  <div className="filter  bg-white">
+                     <input type="text" id="product-filter" onKeyUp={(e) => setKeyword(e.target.value)}/>
+                     <button className="close-icon" onClick={closeSearch}>
                         <CloseSvg  />
                      </button>
                  </div>

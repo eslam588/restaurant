@@ -128,7 +128,7 @@ textarea {
   margin: 20px 20px 0px 20px;
   display: block;
 }
-input[type="email"],
+input[name="email"],
 input[name="name"],
 input[name="address"],
 input[type="tel"],
@@ -414,7 +414,7 @@ a {
   line-height: 1.25rem;
 }
 .text-xl {
-  font-size: 1.25rem;
+  font-size: 1.25rem !important;
 }
 .line-normal {
   line-height: 1.5;
@@ -691,6 +691,7 @@ span.location-pin {
 .contacts {
   width: 100%;
   position: relative;
+  text-align:center;
 }
 .contacts-container {
   display: flex;
@@ -776,17 +777,18 @@ input:focus {
   border-top: 6px solid var(--color-primary);
   border-left: none;
 }
-.addItem img,
-.removeItem img {
-  width: 8px;
-  display: inline;
+
+.product-item-grid.added-to-card-none {
+  border-top: 6px solid var(--color-on-primary);
+  border-left: none;
 }
 
-/* .order-item-counter .addItem  img,
+.order-item-counter .addItem  img,
 .order-item-counter .removeItem  img{
-  width: 8px ;
+  width: 8px !important ;
   display: inline;
-} */
+  position:relative
+}
 
 .order-item-counter div.removeItem,
 .order-item-counter div.addItem {
@@ -801,9 +803,9 @@ input:focus {
 .order-item-counter div.removeItem {
   border-radius: 10px 0px 0px 10px;
 }
-.order-item-counter div.addItem {
+/* .order-item-counter div.addItem {
   border-radius: 0px 10px 10px 0px;
-}
+} */
 .order-item-counter span.counter {
   padding: 0px;
   background: #fff;
@@ -814,6 +816,9 @@ input:focus {
 }
 .added-to-card {
   border-left: 6px solid var(--color-primary);
+}
+.added-to-card-none{
+  border-left: 6px solid var(--color-on-primary);
 }
 section .product-item_photo {
   position: relative;
@@ -1110,7 +1115,7 @@ ul.links li {
 }
 .js-form-type-select:after {
   position: absolute;
-  /* background: url(/themes/menu/assets/images/arrow-down.svg) no-repeat; */
+  background: url("https://demo.zmatjar.com/themes/menu/assets/images/arrow-down.svg") no-repeat; 
   content: "";
   top: 10px;
   width: 11px;
@@ -1137,4 +1142,25 @@ input[type="tel"] {
   position:relative;
 }
 
+
+.nextui-c-csEDlc-ivNdeP-css{
+  text-align:left !important;
+}
+
+.validation-box{
+  text-align: center;
+  padding:0 !important;
+  margin:0 !important;
+}
+.error-validation{
+  font-size:15px;
+  color: var(--color-brand-primary) !important;
+  padding:0 !important;
+  margin:0 !important;
+ 
+}
+
+.error-border{
+  border:1px solid var(--color-brand-primary) !important;
+}
 

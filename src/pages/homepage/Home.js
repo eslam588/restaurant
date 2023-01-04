@@ -7,35 +7,47 @@ import Navigatorbar from "./../../components/NavigatorBar/Navigatorbar"
 import LandingPage from '../../components/Landingpage/LandingPage';
 import Basket from '../../components/Basket/Basket';
 import {useSelector,useDispatch} from 'react-redux';
-import { useTranslation,Trans } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { useTranslation} from 'react-i18next';
+import {getCategoriesIds} from "../../redux/productSlice"
+
 
 
 const Home = () => {
   
   const cartState = useSelector((state) => state.cart);
+  const productState = useSelector((state) => state.product);
+  let filteredproucts = productState.filteredproductbyname
+  
+  const dispatch=useDispatch()
+
+  useEffect(()=> {
+       dispatch(getCategoriesIds())
+  },[])
+
   let {showbasket} = cartState; 
   const [toggleShow , setToggleShow] = useState(false);
-  const [togglelang, setToggleLang] = useState(false)
+  const [togglelang, setToggleLang] = useState(true)
 
   const langs = {
     en: {nativeName:'English'},
     ar : {nativeName : 'عربى'}
   }
   const [t,i18n] = useTranslation()
+   
   
-
 
   return (
     <div className="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas> 
         <div className="container">  
           <ul className="links">
             <li  className={togglelang && "is-active"} onClick={()=> setToggleLang(true)} >
-                <a  onClick={()=> i18n.changeLanguage("en")}  
-                 className={togglelang ? "language-link session-active is-active" : "language-link"}>{langs["en"].nativeName}</a>
+                <Link  onClick={()=> i18n.changeLanguage("en")}  to='/en'
+                 className={togglelang ? "language-link session-active is-active" : "language-link"}>{langs["en"].nativeName}</Link>
             </li>
             <li className={!togglelang && "is-active"} onClick={()=> setToggleLang(false)}>
-                <a  onClick={()=> i18n.changeLanguage("de")} 
-                className={togglelang ? "language-link" : "language-link session-active is-active"} >{langs["ar"].nativeName}</a>
+                <Link  onClick={()=> i18n.changeLanguage("ar")} to='/ar'
+                className={togglelang ? "language-link" : "language-link session-active is-active"} >{langs["ar"].nativeName}</Link>
             </li>
           </ul>
           <LandingPage/>
@@ -43,14 +55,27 @@ const Home = () => {
           <Basket showbasket={showbasket} />
           <Offers />
           <Navigatorbar toggleShow={toggleShow} setToggleShow={setToggleShow} />
-          <Mostselling />
-          <ProductsCategory toggleShow={toggleShow} />
+          {
+            productState.showmostselling && (
+              <>
+                 <Mostselling />
+                 {
+                  
+                 }
+                 <ProductsCategory toggleShow={toggleShow} />
+              </>
+            )
+          }
+          {
+            filteredproucts?.length > 0 ? <ProductsCategory filteredproucts={filteredproucts} toggleShow={toggleShow} />: ""
+          }
+         
           <div className="p-4 text-sm line-normal bg-white">
-              All prices are inclusive of VAT
+              {t('Vat')}
           </div>
           <div className="powered-by">
               <a href="https://www.zmatjar.com/?utm_content=powered-by&utm_source=business-storefront&utm_medium=business-partner&utm_campaign=demo" target="_blank" rel="noopener noreferrer" className="powered-by_link">
-              <span className="powered-by_text">Powered by ZMatjar</span>
+              <span className="powered-by_text">{t('Powerby')}</span>
               </a>
           </div>
       </div>

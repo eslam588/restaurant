@@ -9,7 +9,6 @@ const Contact = () => {
 
   
  return (
-    
         <div className ="contacts bg-white shadow py-3">
                 <div className="contacts-container">
                     <a href={website.location} rel="noreferrer" target="_blank" className="location cta">
@@ -18,13 +17,13 @@ const Contact = () => {
                         </div>
                         <span>{t('location')}</span>
                     </a>
-                    <a href={website.whatsapp} target="_blank" rel="noreferrer" className="whatsapp cta">
+                    <a href={website.whatsapp} target="_blank" rel="noreferrer" className="location cta">
                         <div>
                             <Watsappsvg  />
                         </div>
                         <span>{t('WhatsApp')}</span>
                     </a>
-                    <a href={website.call} target="_blank" rel="noreferrer" className="call cta">
+                    <a href={website.call} target="_blank" rel="noreferrer" className="location cta">
                         <div>
                             <Callsvg  />
                         </div>

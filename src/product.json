@@ -5,7 +5,7 @@
         "name":[{ "en": "Americano"}, { "ar": "امريكانو"}],
         "image":"https://demo.zmatjar.com/files/styles/medium/public/2022-08/blob_637814125415427994.webp",
         "description":[{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill"}, 
-                      { "ar": "امريكانو"}],
+                      { "ar": "امريكانو مشرورببببب"}],
         "price":18.70,
         "category":[
             {"_id":1,"type":[{ "en": "Hot Drinks"}, { "ar": "مشروبات ساخنه"}]}
@@ -17,7 +17,7 @@
         "name":[{ "en": "Cafe Latte"}, { "ar": "كافيه لاتيه"}],
         "image":"https://demo.zmatjar.com/files/styles/medium/public/2022-08/blob_637814125415427994.webp",
         "description":[{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill"}, 
-                      { "ar": "اكافيه لاتي"}],
+                      { "ar": " ببلتةناكافيه لاتي"}],
         "price":18.90,
         "category":[
             {"_id":1,"type":[{ "en": "Hot Drinks"}, { "ar": "مشروبات ساخنه"}]}
