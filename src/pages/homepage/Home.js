@@ -10,6 +10,8 @@ import {useSelector,useDispatch} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation} from 'react-i18next';
 import {getCategoriesIds} from "../../redux/productSlice"
+import categories from "../../Categories.json"
+import allproducts from "../../product.json"
 
 
 
@@ -21,9 +23,7 @@ const Home = () => {
   
   const dispatch=useDispatch()
 
-  useEffect(()=> {
-       dispatch(getCategoriesIds())
-  },[])
+  
 
   let {showbasket} = cartState; 
   const [toggleShow , setToggleShow] = useState(false);
@@ -60,9 +60,15 @@ const Home = () => {
               <>
                  <Mostselling />
                  {
-                  
+                  categories.map(cat => {
+                      let filteredall= allproducts.filter(pro => pro.category_id === cat._id)
+                      console.log(filteredall);
+                      return (
+                            <ProductsCategory toggleShow={toggleShow} filteredall={filteredall} catname={cat} />
+                      )
+                  })
+
                  }
-                 <ProductsCategory toggleShow={toggleShow} />
               </>
             )
           }

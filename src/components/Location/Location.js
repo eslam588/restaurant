@@ -11,30 +11,11 @@ import axios from 'axios'
 
 const Location = () => { 
    
-const [coords, setCoords] = useState([])
-const [position, setPosition] = useState(coords || null)
+ const center = [51.505, -0.09]
 
-console.log(position);
-function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    }
-  }
-   
-function showPosition(position) {
-     setCoords([position.coords.latitude,position.coords.longitude])
-     setPosition([position.coords.latitude,position.coords.longitude])
-  }
-
-  useEffect(() => {
-    getLocation()
-  },[])
-
-  
-
-  function DraggableMarker({position, setPosition}) {
-
-
+ function DraggableMarker() {
+    const [draggable, setDraggable] = useState(false)
+    const [position, setPosition] = useState(center)
     const markerRef = useRef(null)
     const eventHandlers = useMemo(
       () => ({
@@ -47,18 +28,26 @@ function showPosition(position) {
       }),
       [],
     )
-  
-    return (
-      <Marker
-        draggable={true}
-        eventHandlers={eventHandlers}
-        position={position}
-        ref={markerRef}>
-      </Marker>
-    )
-  }
-
-
+    const toggleDraggable = useCallback(() => {
+      setDraggable((d) => !d)
+    }, [])
+    
+  return (
+    <Marker
+      draggable={draggable}
+      eventHandlers={eventHandlers}
+      position={position}
+      ref={markerRef}>
+      <Popup minWidth={150}>
+        <span onClick={toggleDraggable}>
+          {draggable
+            ? 'Marker is draggable'
+            : 'Click here to make marker draggable'}
+        </span>
+      </Popup>
+    </Marker>
+  )
+}
 
 
 
@@ -79,21 +68,15 @@ function showPosition(position) {
                 </Link>
             </div>
             <div id="map"  style={{height: "839px" , position: "relative" , outline: "none"}}>
-                { 
-                 coords.length > 0 &&
-                  <MapContainer center={coords} zoom={15} scrollWheelZoom={false}>
-                      {/* <Marker position={coords}> */}
-                      {
-                        position && <DraggableMarker position={position} setPosition={setPosition} />
-                      }
-                      
-                      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                      {/* <Popup>
-                          A pretty CSS3 popup. <br /> Easily customizable.
-                      </Popup> */}
-                      {/* </Marker> */}
-                  </MapContainer>
-}
+                <MapContainer center={center} zoom={15} scrollWheelZoom={false}>
+                    {/* <Marker position={coords}> */}
+                    <DraggableMarker />
+                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                    {/* <Popup>
+                        A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup> */}
+                    {/* </Marker> */}
+                </MapContainer>
             </div>
         </div>
     </div>
@@ -130,3 +113,20 @@ export default Location
 // }
 
 
+// const [lat , setLat] =useState()
+// const [lang , setLang] =useState()// const [coords, setCoords] = useState([])
+  
+// function getLocation() {
+//     if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(showPosition);
+//     }
+//   }
+   
+// function showPosition(position) {
+//      setCoords([position.coords.latitude,position.coords.longitude])
+//   }
+
+
+//   useEffect(() => {
+//     getLocation()
+//   },[])

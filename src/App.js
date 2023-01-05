@@ -1,3 +1,4 @@
+import React,{useState,useEffect} from 'react';
 import Home from './pages/homepage/Home';
 import "./App.css"
 import {Routes , Route,Navigate} from 'react-router-dom';
@@ -10,27 +11,28 @@ function App() {
   
   const cartState = useSelector((state) => state.cart);
   let {showbasket} = cartState; 
+  // let [lang,setLang] =useState(true)
+  // let [lazylang,setLazylang]=useState(null)
   const [t,i18n] = useTranslation()
-  document.documentElement.lang = i18n.language
+
+
   if(i18n.language == "en"){
     document.documentElement.dir="ltr"
+    // const {default:Lang}= await  import ('./components/translation/Englishlanguage')
+    // setLazylang(<Lang/>)
+    // setLang(true)
   }
   else if(i18n.language == "ar"){
     document.documentElement.dir="rtl"
+    // const {default:Lang}= await  import ('./components/translation/Arabiclanguage')
+    // setLazylang(<Lang/>)
+    // setLang(false)
   }
   
+  
+  
 
-  // const aaaa =() => {
-  //   if(document.documentElement.dir="ltr"){
-  //     import './indexltr.css'
-  //   }
 
-  //  else{
-  //     import './indexrtl.css'
-  //  }
-
-  // }
-    
   
   return (
     

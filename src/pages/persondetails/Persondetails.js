@@ -51,25 +51,25 @@ console.log(countrydata);
                         const errors = {};
                         // validation name
                         if (!values.name) {
-                            errors.name = 'required';
+                            errors.name = 'name is required';
                         }
                         else if (values.name.length > 50) {
                             errors.name = 'max length must be 50 characters ';
                         }
                         //validation phone
                         if (!values.phone) {
-                                errors.phone = 'required';
+                                errors.phone = 'phone is required';
                         }
-                        else if (/^[0-9\()+-]{9,16}$/.test(values.phone)) {
-                            errors.phone = 'Invalid phone number';
-                        }
+                        // else if (/[0-9]{9,16}$/.test(values.phone)) {
+                        //     errors.phone = 'Invalid phone number';
+                        // }
                         else if (values.phone.length > 16) {
                             errors.phone = 'max length must be 16 characters';
                         }
                         
                         // validation address
                         if (!values.address) {
-                            errors.address = 'required';
+                            errors.address = 'address is required';
                         }
                         else if (values.address.length > 50) {
                             errors.address = 'max length must be 50 characters';
@@ -86,7 +86,7 @@ console.log(countrydata);
                         // }
                         // validation checkbox
                         if (!values.accept) {
-                            errors.accept = 'required';
+                            errors.accept = 'checked is required';
                         } 
                         console.log(errors);
                         return errors;
@@ -197,7 +197,7 @@ console.log(countrydata);
                 <div className="js-form-item form-item js-form-type-checkbox form-item-accept js-form-item-accept">
                     <input data-drupal-selector="edit-accept" type="checkbox" id="edit-accept" name="accept" aria-required="true" onChange={handleChange}
                      onBlur={handleBlur} value={values.accept} className={errors.accept && touched.accept && errors.accept ? "accept form-checkbox required error-border" : "accept form-checkbox required"} />
-                    <label for="edit-accept" className="option js-form-required form-required">I acknowledge that I have read and agree to the Terms and conditions</label>
+                    <label for="edit-accept" className="option js-form-required form-required"> I acknowledge that I have read and agree to the Terms and conditions</label>
                 </div>
                 <div className='validation-box'>
                     <span className='error-validation'>{errors.accept && touched.accept && errors.accept}</span>

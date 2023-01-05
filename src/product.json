@@ -7,9 +7,7 @@
         "description":[{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill"}, 
                       { "ar": "امريكانو مشرورببببب"}],
         "price":18.70,
-        "category":[
-            {"_id":1,"type":[{ "en": "Hot Drinks"}, { "ar": "مشروبات ساخنه"}]}
-         ] 
+        "category_id":1       
     },
     {
         "_id":"2",
@@ -19,9 +17,7 @@
         "description":[{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill"}, 
                       { "ar": " ببلتةناكافيه لاتي"}],
         "price":18.90,
-        "category":[
-            {"_id":1,"type":[{ "en": "Hot Drinks"}, { "ar": "مشروبات ساخنه"}]}
-         ] 
+        "category_id":1
     },
     {
         "_id":"3",
@@ -31,9 +27,7 @@
         "description":[{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill"}, 
                       { "ar": "امريعصير أفوكادو وسكانو"}],
         "price":23.80,
-        "category":[
-            {"_id":2,"type":[{ "en": "Fresh Juice Medium"}, { "ar": "عصير طازج متوسط الحجم"}]}
-         ] 
+        "category_id":2
     },
     {
         "_id":"4",
@@ -43,9 +37,7 @@
         "description":[{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill"}, 
                       { "ar": "امريكانو"}],
         "price":19.80,
-        "category":[
-            {"_id":2,"type":[{ "en": "Fresh Juice Medium"}, { "ar": "عصير طازج متوسط الحجم"}]}
-         ] 
+        "category_id":2
     },
     {
         "_id":"5",
@@ -55,10 +47,7 @@
         "description":[{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill"}, 
                       { "ar": "امريكانو"}],
         "price":19.80,
-        "category":[
-            {"_id":1,"type":[{ "en": "Hot Drinks"}, { "ar": "مشروبات ساخنه"}]},
-            {"_id":2,"type":[{ "en": "Fresh Juice Medium"}, { "ar": "عصير طازج متوسط الحجم"}]}
-         ] 
+        "category_id":2
     },
     {
         "_id":"6",
@@ -68,10 +57,7 @@
         "description":[{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill"}, 
                       { "ar": "امريكانو"}],
         "price":26.25,
-        "category":[
-            {"_id":3,"type":[{ "en": "Juicy Deals!"}, { "ar": " صفقات مثيرة!"}]},
-            {"_id":2,"type":[{ "en": "Fresh Juice Medium"}, { "ar": "عصير طازج متوسط الحجم"}]}
-         ] 
+        "category_id":3
     },
     {
         "_id":"7",
@@ -81,9 +67,7 @@
         "description":[{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill"}, 
                       { "ar": "امريكانو"}],
         "price":26.25,
-        "category":[
-            {"_id":3,"type":[{ "en": "Juicy Deals!"}, { "ar": "صفقات مثيرة!"}]}
-         ] 
+        "category_id":3
     },
     {
         "_id":"8",
@@ -93,9 +77,7 @@
         "description":[{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill"}, 
                       { "ar": "امريكانو"}],
         "price":26.25,
-        "category":[
-            {"_id":3,"type":[{ "en": "Juicy Deals!"}, { "ar": "صفقات مثيرة!"}]}
-         ] 
+        "category_id":3
     }
 ]
 
