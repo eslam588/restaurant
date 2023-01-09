@@ -1,0 +1,17 @@
+.basket-screen span.title {
+    display: block;
+    width: 60%;
+  }
+  .basket-screen span.price,
+  .basket-screen span.itemTotal {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #585c5c;
+  }
+  .basket-screen span.itemTotal {
+    text-align: right;
+    width: 140px;
+  }
+  .basket-screen span.itemTotal:lang(ar){
+    text-align: left;
+  }

@@ -1,17 +1,21 @@
 import React,{useEffect,useState} from 'react'
-import { Callsvg,Locationsvg,Watsappsvg,Cartsvg} from '../SVG/IconSvg';
+import {Cartsvg} from '../SVG/IconSvg';
 import {useSelector} from 'react-redux';
 import { Modal, useModal} from "@nextui-org/react";
 import CartModal from '../CartModal/CartModal';
 import wesite from "../../website.json"
 import "./basket.css"
 import { useTranslation} from 'react-i18next';
+import Contact from '../contact icons/Contact';
 
 const Basket = ({showbasket}) => {
-  const [t,i18n] = useTranslation()
+
   const cartState = useSelector((state) => state.cart);
   let {cartItemsnum , totalCount} = cartState; 
   const { setVisible, bindings } = useModal();
+
+  const [t,i18n] = useTranslation()
+  const lang = i18n.language
 
    // to calculate scrolling
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -35,7 +39,7 @@ const Basket = ({showbasket}) => {
         <div flat="true" auto="true" onClick={() => setVisible(true)}>
             <div className="basket-txt"> {t('basket')}</div>
             <div className="basket">
-              <span id="sum">{wesite.currency[0]["en"]} {totalCount.toFixed(2)} </span>
+              <span id="sum">{wesite.currency[lang]} {totalCount.toFixed(2)} </span>
               <Cartsvg />
               <span id="count">{cartItemsnum}</span>
           </div>
@@ -50,30 +54,12 @@ const Basket = ({showbasket}) => {
         aria-describedby="modal-description"
         {...bindings}
       >
-        <CartModal setVisible={setVisible} />
+        <CartModal setVisiblee={setVisible} />
       </Modal>
-  
 
-        <div className="contacts-container">
-          <a href="https://goo.gl/maps/6Tyrp8ooZFfQZhL39" target="_blank" className="location cta">
-            <div>
-               <Locationsvg />
-            </div>
-            <span>{t('location')}</span>
-          </a>
-          <a href="https://wa.me/971502385613" target="_blank" className="whatsapp cta">
-            <div>
-               <Watsappsvg />
-            </div>
-            <span>{t('WhatsApp')}</span>
-          </a>
-          <a href="tel:0502385613" target="_blank" className="call cta">
-            <div>
-              <Callsvg />
-            </div>
-            <span>{t('Call')}</span>
-          </a>
-        </div>
+      {/* contacts icons */}
+
+      <Contact />
       </div>
       
   )

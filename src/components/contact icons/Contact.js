@@ -1,15 +1,15 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import website from "../../website.json"
 import { Callsvg,Locationsvg,Watsappsvg} from './../SVG/IconSvg';
-import { useTranslation,Trans } from 'react-i18next';
+import { t} from 'i18next';
+import "./contact.css"
+
 
 const Contact = () => {
  
-    const [t,i18n] = useTranslation()
 
-  
  return (
-        <div className ="contacts bg-white shadow py-3">
+        
                 <div className="contacts-container">
                     <a href={website.location} rel="noreferrer" target="_blank" className="location cta">
                         <div>
@@ -30,7 +30,6 @@ const Contact = () => {
                         <span>{t('Call')}</span>
                     </a>
                 </div>
-            </div>     
   )
 }
 

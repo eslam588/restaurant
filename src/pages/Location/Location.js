@@ -1,16 +1,19 @@
 import React,{useState,useEffect,useCallback,useMemo,useRef} from 'react'
-import { MapContainer, Marker, Popup, TileLayer ,useMapEvents} from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer ,useMapEvents,CircleMarker } from 'react-leaflet'
 import { Link } from 'react-router-dom'
 import {CloseIcon} from "../../components/SVG/CartIconSvg"
 import website from "../../website.json"
 import "./location.css"
 import L from "leaflet"
-import axios from 'axios'
-
+import { useTranslation} from 'react-i18next';
 
 
 const Location = () => { 
    
+ 
+const [t,i18n] = useTranslation()
+
+const redOptions = { color: '#3388ff' }
 const [coords, setCoords] = useState([])
 const [position, setPosition] = useState(coords || null)
 
@@ -24,6 +27,7 @@ function getLocation() {
 function showPosition(position) {
      setCoords([position.coords.latitude,position.coords.longitude])
      setPosition([position.coords.latitude,position.coords.longitude])
+     sessionStorage.setItem("location",[position.coords.latitude,position.coords.longitude]);
   }
 
   useEffect(() => {
@@ -61,12 +65,11 @@ function showPosition(position) {
 
 
 
-
   return (
     <div className="getlocation">
         <div className="container bg-white">
             <h4 className="header w-full bg-white shadow">
-                Choose the delivery location
+                {t('maps')}
                 <Link to="/" className="close">
                     <span >
                         <CloseIcon />
@@ -75,7 +78,7 @@ function showPosition(position) {
             </h4>
             <div className="confirmLocation bg-white w-full">
                 <Link to="/persondetails">
-                  <span className="confirmLocation-txt">Confirm location</span>
+                  <span className="confirmLocation-txt">{t('confirmmaps')}</span>
                 </Link>
             </div>
             <div id="map"  style={{height: "839px" , position: "relative" , outline: "none"}}>
@@ -88,6 +91,7 @@ function showPosition(position) {
                       }
                       
                       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                      <CircleMarker center={coords} pathOptions={redOptions} radius={60}></CircleMarker>
                       {/* <Popup>
                           A pretty CSS3 popup. <br /> Easily customizable.
                       </Popup> */}

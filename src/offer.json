@@ -1,14 +1,14 @@
 [
     {
     "_id":1,
-    "title":[{ "en": "WELCOME 10%" }, { "ar": "مرحبا 10%" }],
-    "description":[{"en": "Get 10% off your first 2 orders" }, {"ar": "أحصل علي خصم 10% علي أول طلبين لك" }],
+    "title":{ "en": "WELCOME 10%", "ar": "مرحبا 10%"},
+    "description":{"en": "Get 10% off your first 2 orders","ar": "أحصل علي خصم 10% علي أول طلبين لك"},
     "icon":"logo"
    },
    {
     "_id":2,
-    "title":[{ "en": "WELCOME 10%" }, { "ar": "مرحبا 10%" }],
-    "description":[{"en": "Get 10% off your first 2 orders" }, {"ar": "أحصل علي خصم 10% علي أول طلبين لك" }],
+    "title":{"en": "WELCOME 10%","ar": "مرحبا 10%" },
+    "description":{"en": "Get 10% off your first 2 orders","ar": "أحصل علي خصم 10% علي أول طلبين لك" },
     "icon":"logo"
    }
 ]

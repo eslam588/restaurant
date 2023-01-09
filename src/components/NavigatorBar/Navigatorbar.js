@@ -2,12 +2,19 @@ import React,{useState,useEffect} from 'react'
 import {CloseSvg,IconGridSvg,IconListSvg,SearchSvg} from "../SVG/NavigatorSvg"
 import {useDispatch} from 'react-redux';
 import {filterbyName} from "../../redux/productSlice"
+import categories from "../../Categories.json"
+import { useTranslation} from 'react-i18next';
+
+
+
 
 const Navigatorbar = ({toggleShow,setToggleShow}) => {
 
    const [showsearch, setShowSearch]=useState(false)
    const[keyword,setKeyword]=useState("")
     const dispatch = useDispatch();
+    const [t,i18n] = useTranslation()
+    const lang = i18n.language
    
    useEffect(()=> {
        dispatch(filterbyName(keyword))
@@ -17,6 +24,15 @@ const Navigatorbar = ({toggleShow,setToggleShow}) => {
       setShowSearch(false)
       setKeyword("")
    }
+
+   const [isActive, setIsActive] = useState(false);
+
+   let handleItemClick=(index) =>{
+      setIsActive(index);
+  }
+   
+
+
 
   return (
     <div className="navigation-bar shadow">
@@ -40,15 +56,15 @@ const Navigatorbar = ({toggleShow,setToggleShow}) => {
                             onClick={()=> setToggleShow(false)} />
                      </button>
                      <div className="flex overflow-auto w-full">
-                        <a href="#category-3" className="nav-category_link">
-                        <span className="nav-category_label">Hot Drinks</span>
-                        </a>
-                        <a href="#category-4" className="nav-category_link">
-                        <span className="nav-category_label">Fresh Juice Medium</span>
-                        </a>
-                        <a href="#category-1" className="nav-category_link">
-                        <span className="nav-category_label">Juicy Deals!</span>
-                        </a>
+                        {
+                           categories.map((cat,i)=> {
+                              return (
+                                 <a href={`#${cat._id}`} className={`nav-category_link ${isActive === i ? "active" : "" }`} onClick={()=>handleItemClick(i)}>
+                                   <span className="nav-category_label">{cat.type[lang]}</span>
+                                 </a>
+                              )
+                           })
+                        }
                      </div>
                      <button className="search-icon" onClick={()=>setShowSearch(true)}>
                         <SearchSvg  />

@@ -1,25 +1,20 @@
 {
   "_id": 1,
-  "name": [{ "en": "ZMatjar" }, { "ar": "زمتجر" }],
-  "title": [{ "en": "ZMatjar" }, { "ar": "زمتجر" }],
-  "description": [{ "en": "ZMatjar" }, { "ar": "زمتجر" }],
+  "name": {"en": "ZMatjar" , "ar": "زمتجر"},
+  "title":{ "en": "ZMatjar" , "ar": "زمتجر" },
+  "description":{ "en": "ZMatjar","ar": "زمتجر" },
   "image": "https://demo.zmatjar.com/files/demo/header-image.jpg",
   "logo": "https://demo.zmatjar.com/files/demo/logo.jpg",
   "ThemeColor":"b11f23",
   "icon":"https://demo.zmatjar.com/files/zmatjar-logo.jpg",
-  "business_types":[[{ "en": "Desserts" }, { "ar": "حلويات" }],
-                  [{ "en": "Sandwiches" }, { "ar": "سندوتشات" }],
-                  [{ "en": "Chocolate" }, { "ar": "شيكولات" }]
-  ],
-  "address": [
-    { "en": "Dtech, Dubai Silicon Oasis, Dubai" },
-    { "ar": "ديتك, واحة دبي للسيليكون, دبي" }
-  ],
+  "business_types":[{"en":"Desserts", "ar": "حلويات"},
+                    {"en": "Sandwiches","ar": "سندوتشات" },
+                    {"en": "Chocolate","ar": "شيكولات" }],
+  "address":{ "en": "Dtech, Dubai Silicon Oasis, Dubai" , "ar": "ديتك, واحة دبي للسيليكون, دبي" },
   "coordinates": "25.1243149,55.3765177",
   "location":"https://goo.gl/maps/6Tyrp8ooZFfQZhL39",
   "whatsapp":"https://wa.me/971502385613",
   "call":"tel:0502385613",
-  "language": [
-    {"en":"en","def":true}],
-  "currency":[{ "en": "AED" }, { "ar": "د.إ" }]
+  "languages": [{"name":"English", "code":"en"},{"name":"عربى", "code":"ar"}],
+  "currency":{"en": "AED","ar": "د.إ" }
 }

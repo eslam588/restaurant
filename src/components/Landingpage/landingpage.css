@@ -1,0 +1,36 @@
+.outlet_cover {
+    padding-bottom: 56%;
+    width: 100%;
+    background-position: 50%;
+    background-size: cover;
+  }
+  .outlet {
+    display: flex;
+  }
+  .outletLogo {
+    width: 80px;
+  }
+
+  .outletDetails {
+    padding-top: 10px;
+  }
+
+  .outletName {
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 0.9;
+    margin-bottom: 0.25rem;
+    padding: 0px !important;
+  }
+  .outletCategory {
+    color: var(--color-primary);
+  }
+
+  .outletAddress {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+    --text-opacity: 1;
+    color: rgba(140, 140, 140, var(--text-opacity));
+  }

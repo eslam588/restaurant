@@ -1,4 +1,4 @@
-import React,{useState,useEffect}from 'react'
+import React,{useState}from 'react'
 import Contact from '../../components/contact icons/Contact'
 import Mostselling from './../../components/mostselling/Mostselling';
 import ProductsCategory from '../../components/productscategory/ProductsCategory';
@@ -6,52 +6,86 @@ import Offers from './../../components/offer/Offers';
 import Navigatorbar from "./../../components/NavigatorBar/Navigatorbar"
 import LandingPage from '../../components/Landingpage/LandingPage';
 import Basket from '../../components/Basket/Basket';
-import {useSelector,useDispatch} from 'react-redux';
-import { Link } from 'react-router-dom';
+import {useSelector} from 'react-redux';
 import { useTranslation} from 'react-i18next';
-import {getCategoriesIds} from "../../redux/productSlice"
+import { Link} from 'react-router-dom';
 import categories from "../../Categories.json"
 import allproducts from "../../product.json"
+import Footer from '../../components/footer/Footer';
+import { Grid, Dropdown, Radio } from "@nextui-org/react";
 
 
 
-const Home = () => {
-  
+
+
+const Home = ({langs,currentLanguage}) => {
+
+
   const cartState = useSelector((state) => state.cart);
   const productState = useSelector((state) => state.product);
   let filteredproucts = productState.filteredproductbyname
-  
-  const dispatch=useDispatch()
-
-  
+  const {i18n}  = useTranslation()
 
   let {showbasket} = cartState; 
   const [toggleShow , setToggleShow] = useState(false);
-  const [togglelang, setToggleLang] = useState(true)
 
-  const langs = {
-    en: {nativeName:'English'},
-    ar : {nativeName : 'عربى'}
-  }
-  const [t,i18n] = useTranslation()
-   
-  
+  const [selectedColor, setSelectedColor] = React.useState("default");
+
 
   return (
     <div className="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas> 
         <div className="container">  
-          <ul className="links">
-            <li  className={togglelang && "is-active"} onClick={()=> setToggleLang(true)} >
-                <Link  onClick={()=> i18n.changeLanguage("en")}  to='/en'
-                 className={togglelang ? "language-link session-active is-active" : "language-link"}>{langs["en"].nativeName}</Link>
-            </li>
-            <li className={!togglelang && "is-active"} onClick={()=> setToggleLang(false)}>
-                <Link  onClick={()=> i18n.changeLanguage("ar")} to='/ar'
-                className={togglelang ? "language-link" : "language-link session-active is-active"} >{langs["ar"].nativeName}</Link>
-            </li>
+          {
+            langs.length < 1 ? (
+              
+                  <Grid.Container gap={1.5} justify="flex-start">
+                    <Grid xs={12}>
+                      <Grid>
+                        <Dropdown>
+                          <Dropdown.Button color={selectedColor}>
+                             Languages
+                          </Dropdown.Button>
+                          <Dropdown.Menu
+                            color={selectedColor}
+                            variant="shadow"
+                            aria-label="Actions"
+                          >
+                            {
+                              langs.map((lang)=> {
+                                return (
+                                  // <Link to={`/${lang.code}`}>
+                                    <Dropdown.Item key={lang.code} onClick={()=> i18n.changeLanguage(lang.code)}>
+                                      {lang.name} 
+                                    </Dropdown.Item>
+                                  // </Link>
+                                )
+                              })
+                            }
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </Grid>
+                    </Grid>
+                  </Grid.Container>
+            ):(
+             <ul className="links">
+            {
+              langs.map((lag,i)=> {
+                return(
+                  <li className={lag.code !== currentLanguage.code ? "" : "is-active"} key={i} >
+                   <Link to={`/${lag.code}`} onClick={()=> i18n.changeLanguage(lag.code)}  className={lag.code !== currentLanguage.code ? "language-link" : "language-link session-active is-active" }
+                      >{lag.name}</Link>
+                 </li>
+                )
+                
+              })
+            }
           </ul>
+          )
+          }
           <LandingPage/>
-          <Contact />
+          <div className ="contacts bg-white shadow py-3">
+           <Contact />
+          </div>
           <Basket showbasket={showbasket} />
           <Offers />
           <Navigatorbar toggleShow={toggleShow} setToggleShow={setToggleShow} />
@@ -61,13 +95,21 @@ const Home = () => {
                  <Mostselling />
                  {
                   categories.map(cat => {
-                      let filteredall= allproducts.filter(pro => pro.category_id === cat._id)
-                      console.log(filteredall);
+                      let filteredall= allproducts.filter(pro => {
+                        if(Array.isArray(pro.category_id)){
+                             return pro.category_id.find(id => id === cat._id)  
+                        }
+                        else{
+                           if(pro.category_id === cat._id){
+                            return (pro)
+                           }
+                        }
+                      })
                       return (
-                            <ProductsCategory toggleShow={toggleShow} filteredall={filteredall} catname={cat} />
-                      )
-                  })
-
+                         <ProductsCategory toggleShow={toggleShow} filteredall={filteredall} catname={cat} />
+                      ) 
+                     }
+                   )
                  }
               </>
             )
@@ -75,15 +117,7 @@ const Home = () => {
           {
             filteredproucts?.length > 0 ? <ProductsCategory filteredproucts={filteredproucts} toggleShow={toggleShow} />: ""
           }
-         
-          <div className="p-4 text-sm line-normal bg-white">
-              {t('Vat')}
-          </div>
-          <div className="powered-by">
-              <a href="https://www.zmatjar.com/?utm_content=powered-by&utm_source=business-storefront&utm_medium=business-partner&utm_campaign=demo" target="_blank" rel="noopener noreferrer" className="powered-by_link">
-              <span className="powered-by_text">{t('Powerby')}</span>
-              </a>
-          </div>
+          <Footer />
       </div>
     </div>
 
@@ -91,14 +125,3 @@ const Home = () => {
 }
 
 export default Home
-
-
-
-
-    // <ul class="links">
-    //   <li data-drupal-link-query="{&quot;language&quot;:&quot;en&quot;}" data-drupal-link-system-path="<front>" class="is-active">
-    //      <a href="/en?language=en" class="language-link session-active is-active" data-drupal-link-query="{&quot;language&quot;:&   quot;en&quot;}" data-drupal-link-system-path="<front>">English</a>
-    //    </li>
-    //   <li data-drupal-link-query="{&quot;language&quot;:&quot;ar&quot;}" data-drupal-link-system-path="<front>"><a href="/ar?language=ar" class="language-link" data-drupal-link-query="{&quot;language&quot;:&quot;ar&quot;}" data-drupal-link-system-path="<front>">عربى</a>
-    //       </li>
-    //     </ul> 

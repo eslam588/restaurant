@@ -1,21 +1,55 @@
 import React,{useState,useEffect,useCallback,useMemo,useRef} from 'react'
-import { MapContainer, Marker, Popup, TileLayer ,useMapEvents} from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer ,useMapEvents,CircleMarker } from 'react-leaflet'
 import { Link } from 'react-router-dom'
 import {CloseIcon} from "../../components/SVG/CartIconSvg"
-import website from "../../website.json"
 import "./location.css"
 import L from "leaflet"
-import axios from 'axios'
+import { useTranslation} from 'react-i18next';
+import { Modal, useModal} from "@nextui-org/react";
+import Persondetails from './../persondetails/Persondetails';
 
 
+const Location = ({setVisiblee}) => { 
 
-const Location = () => { 
+const [t,i18n] = useTranslation()
+const redOptions = { color: '#3388ff' }
+const [coords, setCoords] = useState([])
+const [position, setPosition] = useState(coords || null)
+const { setVisible, bindings } = useModal();
+
+
+function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  }
    
- const center = [51.505, -0.09]
+function showPosition(position) {
+     setCoords([position.coords.latitude,position.coords.longitude])
+     setPosition([position.coords.latitude,position.coords.longitude])
+     let lat = position.coords.latitude;
+     let lng = position.coords.longitude;
+    sessionStorage.setItem("location",JSON.stringify({lat,lng}));
+  }
 
- function DraggableMarker() {
-    const [draggable, setDraggable] = useState(false)
-    const [position, setPosition] = useState(center)
+
+  useEffect(() => {
+    getLocation()
+  },[])
+
+  useEffect(() => {
+    if(position[0] !== coords[0] && position[1] !== coords[1]){
+      sessionStorage.setItem("location",JSON.stringify(position));
+     }
+  },[position])
+
+  
+
+  
+
+  function DraggableMarker({position, setPosition}) {
+
+
     const markerRef = useRef(null)
     const eventHandlers = useMemo(
       () => ({
@@ -28,26 +62,17 @@ const Location = () => {
       }),
       [],
     )
-    const toggleDraggable = useCallback(() => {
-      setDraggable((d) => !d)
-    }, [])
-    
-  return (
-    <Marker
-      draggable={draggable}
-      eventHandlers={eventHandlers}
-      position={position}
-      ref={markerRef}>
-      <Popup minWidth={150}>
-        <span onClick={toggleDraggable}>
-          {draggable
-            ? 'Marker is draggable'
-            : 'Click here to make marker draggable'}
-        </span>
-      </Popup>
-    </Marker>
-  )
-}
+  
+    return (
+      <Marker
+        draggable={true}
+        eventHandlers={eventHandlers}
+        position={position}
+        ref={markerRef}>
+      </Marker>
+    )
+  }
+
 
 
 
@@ -55,28 +80,47 @@ const Location = () => {
     <div className="getlocation">
         <div className="container bg-white">
             <h4 className="header w-full bg-white shadow">
-                Choose the delivery location
-                <Link to="/" className="close">
+                {t('maps')}
+                <div className="close" onClick={()=>setVisiblee(false)}>
                     <span >
-                        <CloseIcon />
+                        <CloseIcon  />
                     </span>
-                </Link>
+                </div>
             </h4>
             <div className="confirmLocation bg-white w-full">
-                <Link to="/persondetails">
-                  <span className="confirmLocation-txt">Confirm location</span>
-                </Link>
+                <div onClick={() => setVisible(true)}>
+                  <span className="confirmLocation-txt">{t('confirmmaps')}</span>
+                </div>
             </div>
+            
+            <Modal
+              scroll
+              fullScreen
+              closeButton
+              aria-labelledby="modal-title"
+              aria-describedby="modal-description"
+              {...bindings}
+            >
+              <Persondetails setVisibleee={setVisible} />
+            </Modal>
+
             <div id="map"  style={{height: "839px" , position: "relative" , outline: "none"}}>
-                <MapContainer center={center} zoom={15} scrollWheelZoom={false}>
-                    {/* <Marker position={coords}> */}
-                    <DraggableMarker />
-                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                    {/* <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup> */}
-                    {/* </Marker> */}
-                </MapContainer>
+                { 
+                 coords.length > 0 &&
+                  <MapContainer center={coords} zoom={15} scrollWheelZoom={false}>
+                      {/* <Marker position={coords}> */}
+                      {
+                        position && <DraggableMarker position={position} setPosition={setPosition} />
+                      }
+                      
+                      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                      <CircleMarker center={coords} pathOptions={redOptions} radius={60}></CircleMarker>
+                      {/* <Popup>
+                          A pretty CSS3 popup. <br /> Easily customizable.
+                      </Popup> */}
+                      {/* </Marker> */}
+                  </MapContainer>
+}
             </div>
         </div>
     </div>
@@ -102,31 +146,3 @@ export default Location
 
 
 
-
-
-
-// let getPosition = async () =>  {
-//     return  await navigator.geolocation.getCurrentPosition((position) =>{
-//              let coordinates = [position.coords.latitude,position.coords.longitude]
-//                   return coordinates
-//             })
-// }
-
-
-// const [lat , setLat] =useState()
-// const [lang , setLang] =useState()// const [coords, setCoords] = useState([])
-  
-// function getLocation() {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(showPosition);
-//     }
-//   }
-   
-// function showPosition(position) {
-//      setCoords([position.coords.latitude,position.coords.longitude])
-//   }
-
-
-//   useEffect(() => {
-//     getLocation()
-//   },[])

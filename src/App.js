@@ -1,46 +1,50 @@
-import React,{useState,useEffect} from 'react';
+import React,{useEffect} from 'react';
 import Home from './pages/homepage/Home';
-import "./App.css"
 import {Routes , Route,Navigate} from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation} from 'react-i18next';
 import Location from './pages/Location/Location';
 import Persondetails from "./pages/persondetails/Persondetails"
+import cookies from "js-cookie"
+import "./styles/reset.css";
+import "./styles/appltr.css"
+import website from "./website.json"
+import { detectionLang } from './redux/productSlice';
+
 
 function App() {
   
   const cartState = useSelector((state) => state.cart);
   let {showbasket} = cartState; 
-  // let [lang,setLang] =useState(true)
-  // let [lazylang,setLazylang]=useState(null)
   const [t,i18n] = useTranslation()
+  let languages= website.languages
+  const dispatch= useDispatch()
 
 
-  if(i18n.language == "en"){
-    document.documentElement.dir="ltr"
-    // const {default:Lang}= await  import ('./components/translation/Englishlanguage')
-    // setLazylang(<Lang/>)
-    // setLang(true)
-  }
-  else if(i18n.language == "ar"){
-    document.documentElement.dir="rtl"
-    // const {default:Lang}= await  import ('./components/translation/Arabiclanguage')
-    // setLazylang(<Lang/>)
-    // setLang(false)
-  }
-  
-  
-  
+  const currentLanguageCode = cookies.get('i18next') || "en"
 
+  const currentLanguage = website.languages.find(l => l.code == currentLanguageCode)
+ 
+   useEffect(() => {
+    if (currentLanguage.code === "ar") {
+        document.body.dir = 'rtl'
+    }
+    else{
+        document.body.dir = 'ltr'
+    }
+    
+    document.getElementsByTagName("html")[0].setAttribute("lang",currentLanguage.code)
+    dispatch(detectionLang(currentLanguage.code))
+  },[currentLanguage.code])
+ 
 
-  
   return (
+    
     
     <div style={showbasket ? {marginBottom :"120px"} : {marginBottom :"60px"}}>
       <Routes>
-               <Route path="/" element={<Navigate to='/en' />}/>
-               <Route path='/en' element={<Home />} />
-               <Route path='/ar' element={<Home />} />
+               <Route exact path="/" element={ <Navigate to={`/${currentLanguage.code}`} />}/>
+               <Route  path={`/${currentLanguage.code}`} element={<Home langs={languages} currentLanguage={currentLanguage}  />} />
                <Route path="/location" element={ <Location />} />
                <Route path="/persondetails" element={ <Persondetails />} />
       </Routes>

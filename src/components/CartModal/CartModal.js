@@ -1,14 +1,16 @@
-import React,{useState,useEffect}from 'react'
+import React from 'react'
 import {CloseIcon,RemoveIcon,AddIcon} from "../../components/SVG/CartIconSvg"
 import {useSelector,useDispatch} from 'react-redux';
 import website from "../../website.json"
 import products from "../../product.json"
 import {incrementCart,decrementCart} from '../../redux/cartSlice';
-import { Link} from 'react-router-dom';
 import { useTranslation,Trans } from 'react-i18next';
+import { Modal, useModal} from "@nextui-org/react";
+import Location from '../Location/Location';
+import "./cartmodal.css"
 
 
-const CartModal = ({setVisible}) => {
+const CartModal = ({setVisiblee}) => {
 
     const cartState = useSelector((state) => state.cart);
     let {cartItemsnum,totalCount,itemsInCart,showCartPage} = cartState; 
@@ -21,45 +23,30 @@ const CartModal = ({setVisible}) => {
         dispatch(decrementCart(product))  
     }
 
-
-  const [t,i18n] = useTranslation()
-  const [num , setNum] =useState(0)
-  const [lang , setLang] =useState("en")
+    const [t,i18n] = useTranslation()
+    const lang = i18n.language
   
-  useEffect(()=> {
-    determineLanguage()
-  },[i18n.language])
-
-
-  const determineLanguage = () =>{
-    if(i18n.language == 'en'){
-      setNum(0)
-      setLang("en")
-    }
-    else{
-      setNum(1)
-      setLang("ar")
-    }
-  }
    
   // filter product
   let productName = (id,products) => {
       let product = products.find((prod)=> prod._id === id)
       return(
-        <span className="title">{product.name[num][lang]}</span>
+        <span className="title">{product.name[lang]}</span>
       )
     }
-    
 
+  const { setVisible, bindings } = useModal();
+ 
+ console.log(bindings.open);
   return (
     <>
     {
       showCartPage ?
-      (<div className="basket-screen overflow-auto">
+      (<div className={`basket-screen overflow-auto ${bindings.open ? "cart-hidden" : ""}`}>
       <div className="container bg-white">
           <h4 className="header w-full bg-white shadow">
               {t('cartbasket')}
-              <span className="close" onClick={() => setVisible(false)}>
+              <span className="close" onClick={() => setVisiblee(false)}>
                    <CloseIcon />
               </span>
           </h4>
@@ -72,7 +59,7 @@ const CartModal = ({setVisible}) => {
                             productName(prod._id,products)
                         }
                         <div className="basketItem">
-                          <span className="price w-full">{website.currency[num][lang]} {prod?.price?.toFixed(2)}</span>
+                          <span className="price w-full">{website.currency[lang]} {prod?.price?.toFixed(2)}</span>
                           <div className="basket-item-counter">
                             <div className="removeItem" onClick={()=> decrement(prod)}>
                               <RemoveIcon  />
@@ -82,7 +69,7 @@ const CartModal = ({setVisible}) => {
                                 <AddIcon />
                             </div>
                            </div>
-                          <span className="itemTotal min-w-24">{website.currency[num][lang]} {(prod?.price*prod?.quantity)?.toFixed(2)}</span>
+                          <span className="itemTotal min-w-24">{website.currency[lang]} {(prod?.price*prod?.quantity)?.toFixed(2)}</span>
                         </div>
                    </div>
   
@@ -104,28 +91,38 @@ const CartModal = ({setVisible}) => {
               <div className="w-full">{t('Subtotal')}
                 <small> ({t('cartVat')})</small>
               </div>
-              <div id="subtotal-sum" className="text-right min-w-28">{website.currency[num][lang]} {totalCount?.toFixed(2)}</div>
+              <div id="subtotal-sum" className="text-right min-w-28">{website.currency[lang]} {totalCount?.toFixed(2)}</div>
             </div>
             <div className="flex pb-2">
               <div className="w-full">{t('charges')}
               </div>
-              <div className="text-right">{t('Total')}</div>
+              <div className="text-right">{t('discount')}</div>
             </div>
             <div className="flex pt-3 pb-2">
               <div className="w-full">{t('Total')}
                 <small> ({t('cartVat')})</small>
               </div>
-              <div id="total-sum" className="text-right min-w-28">{website.currency[num][lang]} {totalCount?.toFixed(2)}</div>
+              <div id="total-sum" className="text-right min-w-28">{website.currency[lang]} {totalCount?.toFixed(2)}</div>
             </div>
           </div>
           <div className="placeOrder bg-white w-full">
-            <small className="placeOrder-error mb-2 px-4 visually-hidden"></small>
-            <Link to="/location" >
-               <span className="placeOrder-txt" >{t('Checkout')}</span>
-            </Link>
+            <small className="placeOrder-error mb-2 px-4 "></small>
+           <div onClick={() => setVisible(true)}>
+               <span className="placeOrder-txt">{t('Checkout')}</span>
+           </div>
+           <Modal
+              scroll
+              fullScreen
+              closeButton
+              aria-labelledby="modal-title"
+              aria-describedby="modal-description"
+              {...bindings}
+             >
+            <Location setVisiblee={setVisible} />
+           </Modal>
           </div>
       </div>
-      </div>) : (setVisible(false))
+      </div>) : (setVisiblee(false))
      }
     </>
     

@@ -1,14 +1,14 @@
 [
     {
         "_id":1,
-        "type":[{ "en": "Hot Drinks"}, { "ar": "مشروبات ساخنه"}]
+        "type":{ "en": "Hot Drinks","ar": "مشروبات ساخنه"}
     },
     {
        "_id":2,
-       "type":[{ "en": "Fresh Juice Medium"},{ "ar": "عصير طازج متوسط الحجم"}]
+       "type":{ "en": "Fresh Juice Medium","ar": "عصير طازج متوسط الحجم"}
     },
     {
       "_id":3,
-      "type":[{ "en": "Juicy Deals!"}, { "ar": " صفقات مثيرة!"}]
+      "type":{ "en": "Juicy Deals!","ar": " صفقات مثيرة!"}
     }
 ]
