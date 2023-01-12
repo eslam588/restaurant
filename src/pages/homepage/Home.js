@@ -1,4 +1,4 @@
-import React,{useState}from 'react'
+import React,{useState,useEffect}from 'react'
 import Contact from '../../components/contact icons/Contact'
 import Mostselling from './../../components/mostselling/Mostselling';
 import ProductsCategory from '../../components/productscategory/ProductsCategory';
@@ -17,7 +17,6 @@ import { Grid, Dropdown, Radio } from "@nextui-org/react";
 
 
 
-
 const Home = ({langs,currentLanguage}) => {
 
 
@@ -30,20 +29,25 @@ const Home = ({langs,currentLanguage}) => {
   const [toggleShow , setToggleShow] = useState(false);
 
   const [selectedColor, setSelectedColor] = React.useState("default");
+  const lang = i18n.language
+
+
+  
+
 
 
   return (
     <div className="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas> 
         <div className="container">  
           {
-            langs.length < 1 ? (
+            langs.length > 2 ? (
               
                   <Grid.Container gap={1.5} justify="flex-start">
                     <Grid xs={12}>
                       <Grid>
                         <Dropdown>
                           <Dropdown.Button color={selectedColor}>
-                             Languages
+                              {currentLanguage.name}
                           </Dropdown.Button>
                           <Dropdown.Menu
                             color={selectedColor}
@@ -51,13 +55,14 @@ const Home = ({langs,currentLanguage}) => {
                             aria-label="Actions"
                           >
                             {
-                              langs.map((lang)=> {
+                              langs.map((lang,i)=> {
                                 return (
-                                  // <Link to={`/${lang.code}`}>
-                                    <Dropdown.Item key={lang.code} onClick={()=> i18n.changeLanguage(lang.code)}>
-                                      {lang.name} 
-                                    </Dropdown.Item>
-                                  // </Link>
+                                      <Dropdown.Item key={i} className={lang.name == currentLanguage.name ? "nextui-c-kpzpMf-hXNyUb-cv" :""}  > 
+                                         <Link to={`/${lang.code}`} onClick={()=> i18n.changeLanguage(lang.code)}>
+                                          <p className='dropdown-p' >{lang.name}</p>
+                                        </Link>
+                                        
+                                      </Dropdown.Item>
                                 )
                               })
                             }
@@ -71,7 +76,7 @@ const Home = ({langs,currentLanguage}) => {
             {
               langs.map((lag,i)=> {
                 return(
-                  <li className={lag.code !== currentLanguage.code ? "" : "is-active"} key={i} >
+                  <li key={i} className={lag.code !== currentLanguage.code ? "" : "is-active"}  >
                    <Link to={`/${lag.code}`} onClick={()=> i18n.changeLanguage(lag.code)}  className={lag.code !== currentLanguage.code ? "language-link" : "language-link session-active is-active" }
                       >{lag.name}</Link>
                  </li>

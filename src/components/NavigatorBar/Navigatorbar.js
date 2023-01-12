@@ -59,8 +59,8 @@ const Navigatorbar = ({toggleShow,setToggleShow}) => {
                         {
                            categories.map((cat,i)=> {
                               return (
-                                 <a href={`#${cat._id}`} className={`nav-category_link ${isActive === i ? "active" : "" }`} onClick={()=>handleItemClick(i)}>
-                                   <span className="nav-category_label">{cat.type[lang]}</span>
+                                 <a  href={`#${cat._id}`} className={`nav-category_link ${isActive === i ? "active" : "" }`} onClick={()=>handleItemClick(i)}>
+                                   <span key={i} className="nav-category_label">{cat.type[lang]}</span>
                                  </a>
                               )
                            })

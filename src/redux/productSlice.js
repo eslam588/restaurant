@@ -21,7 +21,7 @@ const productSlice = createSlice({
     reducers:{
         filterbyName:(state, action) => {
            let newstate = JSON.parse(JSON.stringify(state.prods))
-           const filterProducten =  newstate.filter(prod => prod.name[state.lang].toLowerCase().includes(action.payload.toLowerCase()))
+           const filterProducten =  newstate.filter(prod => prod.name[state.lang]?.toLowerCase().includes(action.payload.toLowerCase()))
            state.filteredproductbyname=filterProducten
            if(state.filteredproductbyname.length === newstate.length ){
             state.filteredproductbyname=[]

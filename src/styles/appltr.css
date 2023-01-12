@@ -176,15 +176,20 @@ textarea {
   width: calc(100% - 20px);
   background: white;
 }
+
+input[type="tel"]{
+  padding-left:65px;
+}
 body {
   min-height: 100vh;
   --bg-opacity: 1;
   background-color: rgba(245, 245, 245, var(--bg-opacity));
   line-height: 1.25;
-  margin: 0px;
+  margin: 0px; 
   padding: 0px;
   font-family: "ITCAvantGardeStd-Bk", Arial, Helvetica, sans-serif;
-  scroll:smooth
+  scroll:smooth;
+  animation-fill-mode: forwards;
 }
 
 body:lang(ar) {
@@ -221,6 +226,7 @@ a {
   display: none !important;
 }
 .container {
+  position:relative;
   width: 100%;
   min-width: 300px;
   max-width: 460px;
@@ -484,6 +490,15 @@ a {
   --bg-opacity: 1;
   background-color: rgba(245, 245, 245, var(--bg-opacity));
 }
+
+.nextui-c-iWjDFM .nextui-button-text:lang(ar){
+  margin-top: -5px !important;
+  font-family: "DIN Next Regular" !important;
+}
+
+.dropdown-p{
+  padding-bottom:5px;
+}
 .product-item {
   transition: background-color 0.3s ease-out;
   display: block;
@@ -527,6 +542,7 @@ section .product-item_wrapper {
   flex-direction: column;
   width: 100%;
   justify-content: flex-start;
+  cursor:pointer;
 }
 .most-selling-container .product-item_photo-image {
   min-height: 9.5rem;
@@ -588,10 +604,30 @@ section .product-item-grid .product-item_content {
   font-size: 0.875rem;
   line-height: 1.5;
 }
-/* .price span:lang(ar) {
-  unicode-bidi:bidi-override;
-  direction:rtl;
-} */
+
+.price:lang(ar){
+  direction: ltr;
+  text-align: right;
+}
+
+.price span:lang(ar){
+  display: inline-block;
+  margin-right:5px;
+}
+
+.price:lang(en){
+  direction: ltr;
+  text-align: left;
+}
+
+.price span:lang(en){
+  display: inline-block;
+  margin-right:5px;
+}
+
+
+
+
 
 .most-selling-container .price {
   font-weight: 500;
@@ -968,6 +1004,27 @@ section .product-item_photo {
   text-align: right;
 }
 
+.basket:lang(ar){
+  direction: ltr;
+  text-align: right;
+}
+
+.basket span:lang(ar){
+  display: inline-block;
+  margin-right:5px
+}
+
+.basket:lang(en){
+  direction: ltr;
+  text-align: left;
+}
+
+.basket span:lang(en){
+  display: inline-block;
+  margin-right:5px;
+}
+
+
 .placeOrder,
 .confirmLocation {
   position: fixed;
@@ -1017,7 +1074,10 @@ input[type="submit"] {
 }
 .basket:lang(ar){
   text-align: left;
+
 }
+
+
 
 #sum {
   margin: 0 2.25rem;
@@ -1126,13 +1186,28 @@ input[type="submit"] {
 }
 .text-right:lang(en) {
   text-align: right;
+
 }
 .text-right:lang(ar){
   text-align: left;
+  direction:ltr
 }
+
+.text-right span:lang(ar){
+  text-align: left;
+  display:inline-block;
+  margin-right:5px;
+}
+
+.text-right span:lang(en){
+  margin-right:3px;
+}
+
+
 .basket-screen,
 .getlocation,
-.form-screen {
+.form-screen
+ {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -1168,6 +1243,37 @@ input[type="submit"] {
   content: var(--currency);
   margin-right: 5px;
 }
+
+
+.basketItem:lang(ar){
+  direction: rtl;
+  text-align: left;
+}
+
+.basketItem span:lang(en){
+  display: inline-block;
+  margin-right:5px;
+}
+ .basketItem span:lang(ar){
+  display: inline-block;
+  margin-right:5px;
+}
+
+.basketItem span.itemTotal:lang(ar){
+  display: inline-block;
+  direction:ltr;
+  margin-right:10px;
+} 
+
+/* .price:lang(en){
+  direction: ltr;
+  text-align: left;
+}
+
+.price span:lang(en){
+  display: inline-block;
+  margin-right:5px;
+} */
 li.is-active {
   display: none;
 }
@@ -1256,20 +1362,34 @@ ul.links li {
   left: 20px;
 }
 label[for="edit-phone"] {
-  left: 0.8em;
   z-index: 4;
   position: absolute;
   padding-bottom: calc(0.5em - 1px);
   padding-top: calc(0.45rem - 1px);
   display: inline-block;
   line-height: 1.25rem;
-  width: 50px;
-  text-align: right;
+  width: 60px;
+  left:-10px;
+  text-align:right;
   font-size: 16px;
   color: #4a4a4a;
 }
+
+label[for="edit-phone"]:lang(en)::before{
+   content:"+"
+
+}
+label[for="edit-phone"]:lang(ar)::after{
+  content:"+"
+
+}
+
+/* label[for="edit-phone"]:lang(ar){
+  right: 0.1em;
+  text-align: right;
+} */
 input[type="tel"] {
-  padding-left: 55px;
+  padding-left: 63px;
 }
 .form-item-phone {
   position:relative;
@@ -1314,20 +1434,47 @@ input[type="tel"] {
 }
 
 
-.cart-hidden{
-  opacity:0!important
-}
+/* .cart-hidden{
+  display: none;
+} */
+
+
+
 
  .nextui-c-kRHeuF{
-  position:absolute;
+  position:absolute; 
+  left:15px;
 } 
 
+.nextui-c-kRHeuF:lang(ar){
+  right:15px;
+}
+
+.nextui-c-bDGMeb-gLOJOp-cv{
+  order:1;
+}
+.nextui-c-bDGMeb-gLOJOp-cv:lang("ar")
+{
+  order:0;
+  display:inline-block;
+  margin-right:20px;
+ 
+}
+
+
+
+.nextui-c-bDGMeb-jzMUFa-isAuto-true{
+  right:8px;
+}
 .nextui-popover-content{
   width:120px;
 }
 
 .nextui-c-iWjDFM{
-  background-color:var(--color-primary)
+  background-color:var(--color-primary);
+  text-align:center;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 100%);
+  
 }
 .nextui-c-clSMyX{
   width:100px
@@ -1337,13 +1484,101 @@ input[type="tel"] {
   background-color:var(--color-primary)
 }
 
-.nextui-c-iWjDFM-gglxka-cv{
-  padding-left:7px;
-  padding-right:5px
-}
+
 .nextui-c-clSMyX{
   min-width:120px
 }
 .nextui-c-kpzpMf{
   height:25px
 }
+
+
+
+
+.formphonecode{
+  padding-top:3px !important;
+  width:80px !important;
+
+}
+
+
+
+.order-complete{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  --bg-opacity: 1;
+}
+
+
+
+ .nextui-c-grJsex-ikUaMfZ-css{
+  max-width:460px !important;
+  margin:0 auto;
+}
+
+
+.nextui-c-csEDlc-iwsVYJ-fullScreen-true .nextui-c-grJsex{
+  margin: 0 auto;
+  border:none;
+} 
+
+
+.nextui-c-cgxxHA{
+      border-radius:0 ;
+      box-shadow:none;
+}
+
+
+.order-complete {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    --bg-opacity: 1;
+    margin:auto;
+    position: fixed;
+}
+
+
+.order-details{
+  margin-top:150px;
+}
+
+.order-details h2 {
+  margin-bottom:20px;
+  text-align:center;
+}
+
+.order-details p {
+  text-align:center;
+  padding:10px;
+  border:1px solid #CCC;
+  border-radius:10px;
+  width:80%;
+  margin: 20px auto;
+}
+.order-details p span{
+  font-weight:bold;
+  margin-right:5px;
+}
+
+.order-details p span:lang(ar){
+  font-weight:bold;
+  margin-left:5px;
+}
+
+
+.nextui-c-iWjDFM{
+  
+}
+
+
+a.close-product-popup{
+  width: 100%;
+}
+

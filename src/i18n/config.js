@@ -8,7 +8,7 @@ i18n.use(initReactI18next)
     .use(LanguageDetector)
     .use(HttpApi)
     .init({
-        supportedLngs : ['en','ar'],
+        // supportedLngs:["en","ar","fr"],
         fallbackLng: "en",
         detection:{
             order: ['cookie','htmlTag','localStorage','path', 'subdomain'],
@@ -17,8 +17,7 @@ i18n.use(initReactI18next)
         backend:{
             loadPath : "/assets/locales/{{lng}}/translations.json"
         },
-        react: { useSuspense : false},
-        
+        react: { useSuspense : false},  
     });
     
 export default i18n;

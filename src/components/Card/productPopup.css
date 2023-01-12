@@ -1,0 +1,82 @@
+.product-popup{
+    width: 100%;
+    min-height: 100%;
+}
+
+.product-cover{
+    height:50%;
+    background-position: top;
+    background-size: cover;
+  
+}
+
+
+.nextui-c-cgxxHA-iNZaNK-closeButton-true {
+    padding-top: 0;
+}
+
+
+.product-popup  .product-popup-details{
+    margin:0 20px;
+}
+
+.product-popup-name{
+ font-size:25px;
+ margin-top:20px;
+
+}
+
+.product-popup-name:lang(ar){
+    margin-right:20px;
+}
+
+.product-popup-description{
+    font-size:15px;
+    margin-top:20px;
+    padding-bottom:10px;
+    border-bottom:1px solid #ccc;
+    color: rgba(136, 141, 154);
+
+}
+.product-popup-description:lang(ar){
+    margin-right:20px;
+}
+
+.product-popup-price{
+    font-size:15px;
+    margin-top:20px;
+    position:relative
+   
+}
+
+.product-popup-price:lang(ar)  {
+    margin-right:20px;
+
+}
+.product-popup-price span {
+    direction: ltr;
+    display:inline-block; 
+    margin-right:5px;
+}
+.product-popup-price span:lang(ar)  {
+    direction: ltr;
+    display:inline-block; 
+    margin-right:5px;
+}
+
+.product-popup svg{
+    position:absolute;
+    display:inline-block;
+    right:10px;
+    top:10px;
+    fill: rgb(255,255,255);
+}
+
+
+a.close-product-popup{
+    width: 100%;
+  }
+
+.product-popup-price .add-item{
+    position:absolute
+}

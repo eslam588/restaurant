@@ -25,6 +25,8 @@ const CartModal = ({setVisiblee}) => {
 
     const [t,i18n] = useTranslation()
     const lang = i18n.language
+
+    const {hiddencart}= useSelector((state) => state.lang);
   
    
   // filter product
@@ -36,13 +38,12 @@ const CartModal = ({setVisiblee}) => {
     }
 
   const { setVisible, bindings } = useModal();
- 
- console.log(bindings.open);
+  
   return (
     <>
     {
-      showCartPage ?
-      (<div className={`basket-screen overflow-auto ${bindings.open ? "cart-hidden" : ""}`}>
+      !hiddencart && showCartPage?
+      (<div className="basket-screen overflow-auto">  
       <div className="container bg-white">
           <h4 className="header w-full bg-white shadow">
               {t('cartbasket')}
@@ -59,7 +60,7 @@ const CartModal = ({setVisiblee}) => {
                             productName(prod._id,products)
                         }
                         <div className="basketItem">
-                          <span className="price w-full">{website.currency[lang]} {prod?.price?.toFixed(2)}</span>
+                          <span className="price w-full"><span>{website.currency[lang]}</span>{prod?.price?.toFixed(2)}</span>
                           <div className="basket-item-counter">
                             <div className="removeItem" onClick={()=> decrement(prod)}>
                               <RemoveIcon  />
@@ -69,7 +70,7 @@ const CartModal = ({setVisiblee}) => {
                                 <AddIcon />
                             </div>
                            </div>
-                          <span className="itemTotal min-w-24">{website.currency[lang]} {(prod?.price*prod?.quantity)?.toFixed(2)}</span>
+                          <span className="itemTotal min-w-24"><span>{website.currency[lang]}</span>{(prod?.price*prod?.quantity)?.toFixed(2)}</span>
                         </div>
                    </div>
   
@@ -91,7 +92,7 @@ const CartModal = ({setVisiblee}) => {
               <div className="w-full">{t('Subtotal')}
                 <small> ({t('cartVat')})</small>
               </div>
-              <div id="subtotal-sum" className="text-right min-w-28">{website.currency[lang]} {totalCount?.toFixed(2)}</div>
+              <div id="subtotal-sum" className="text-right min-w-28"><span>{website.currency[lang]}</span>{totalCount?.toFixed(2)}</div>
             </div>
             <div className="flex pb-2">
               <div className="w-full">{t('charges')}
@@ -102,7 +103,7 @@ const CartModal = ({setVisiblee}) => {
               <div className="w-full">{t('Total')}
                 <small> ({t('cartVat')})</small>
               </div>
-              <div id="total-sum" className="text-right min-w-28">{website.currency[lang]} {totalCount?.toFixed(2)}</div>
+              <div id="total-sum" className="text-right min-w-28"><span>{website.currency[lang]}</span>{totalCount?.toFixed(2)}</div>
             </div>
           </div>
           <div className="placeOrder bg-white w-full">

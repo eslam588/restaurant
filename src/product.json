@@ -4,20 +4,22 @@
         "sku":"s0002p",
         "name":{ "en": "Americano","ar": "امريكانو"},
         "image":"https://demo.zmatjar.com/files/styles/medium/public/2022-08/blob_637814125415427994.webp",
-        "description":{"en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill",
+        "description":{"en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill",
                         "ar": "امريكانو مشرورببببب"},
         "price":18.70,
-        "category_id":1       
+        "category_id":1,
+        "url_alias":"Americano"    
     },
     {
         "_id":"2",
         "sku":"s0002p",
         "name":{ "en": "Cafe Latte", "ar": "كافيه لاتيه"},
         "image":"https://demo.zmatjar.com/files/styles/medium/public/2022-08/blob_637814125415427994.webp",
-        "description":{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill",
+        "description":{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill",
                         "ar": " ببلتةناكافيه لاتي"},
         "price":18.90,
-        "category_id":[1,2]
+        "category_id":[1,2],
+        "url_alias":"Cafe-Latte"
 
     },
     {
@@ -25,20 +27,22 @@
         "sku":"s0003p",
         "name":{ "en": "Medium Avocado Juice","ar": "عصير أفوكادو وسط"},
         "image":"https://demo.zmatjar.com/files/styles/medium/public/2022-08/blob_637814125816465511.webp?itok=kqQZFY3i",
-        "description":{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill",
+        "description":{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill",
                         "ar": "امريعصير أفوكادو وسكانو"},
         "price":23.80,
-        "category_id":2
+        "category_id":2,
+        "url_alias":"Medium-Avocado-Juice"
     },
     {
         "_id":"4",
         "sku":"s0004p",
         "name":{ "en": "Medium Lemon Juice","ar": "عصير ليمون وسط"},
         "image":"https://demo.zmatjar.com/files/styles/medium/public/2022-08/blob_637814124919936080.webp?itok=YlvC7gM4",
-        "description":{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill", 
+        "description":{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill", 
                          "ar": "امريكانو"},
         "price":19.80,
-        "category_id":2
+        "category_id":2,
+        "url_alias":"Medium-Lemon-Juice"
     },
     {
         "_id":"5",
@@ -48,7 +52,8 @@
         "description":{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill", 
                         "ar": "امريكانو"},
         "price":19.80,
-        "category_id":2
+        "category_id":2,
+        "url_alias":"Medium-Orange-Juice"
     },
     {
         "_id":"6",
@@ -58,7 +63,8 @@
         "description":{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill", 
                          "ar": "امريكانو"},
         "price":26.25,
-        "category_id":3
+        "category_id":3,
+        "url_alias":"Classic-Chicken-Sandwich"
     },
     {
         "_id":"7",
@@ -68,7 +74,8 @@
         "description":{ "en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill", 
                         "ar": "امريكانو"},
         "price":26.25,
-        "category_id":3
+        "category_id":3,
+        "url_alias":"Classic-Sandwich"
     },
     {
         "_id":"8",
@@ -78,7 +85,8 @@
         "description":{"en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill", 
                        "ar": "امريكانو"},
         "price":26.25,
-        "category_id":3
+        "category_id":3,
+        "url_alias":"The-Brioche-Sando"
     }
 ]
 

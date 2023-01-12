@@ -3,7 +3,9 @@ import { createSlice} from "@reduxjs/toolkit";
 
 
 const initialState={
-    language:"en"
+    language:"ar",
+    hiddencart:false,
+    hiddenlocation:false
 }
 
 const langSlice = createSlice({
@@ -13,9 +15,28 @@ const langSlice = createSlice({
         detectionlang: (state, action) => {
             console.log(action.payload);
             state.language=action.payload
-       }
+       },
+       hiddenCart:(state, action) => {
+            if(action.payload){
+                state.hiddencart=false
+            }
+            else{
+                state.hiddencart=true
+            }
+           
+       },
+       hiddenLocation:(state, action) => {
+            if(action.payload){
+                state.hiddenlocation=false
+            }
+            else{
+                state.hiddenlocation=true
+            } 
+       },
+
+
     }
 })
 
-export const {detectionlang} = langSlice.actions;
+export const {detectionlang,hiddenCart,hiddenLocation} = langSlice.actions;
 export default langSlice.reducer;

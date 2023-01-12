@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Cardproduct from '../Card/Cardproduct'
 import { useTranslation} from 'react-i18next';
 
@@ -7,6 +7,22 @@ const ProductsCategory = ({filteredproucts,toggleShow,filteredall,catname}) => {
 
   const [t,i18n] = useTranslation()
   const lang = i18n.language
+
+  const handleScroll = () => {
+    // console.log(window.pageXOffset);
+    const scroll = document.getElementById("1")?.scrollTop;
+    console.log(scroll);
+ 
+};
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+}, []);
+
+
   
   return (
 
@@ -21,7 +37,7 @@ const ProductsCategory = ({filteredproucts,toggleShow,filteredall,catname}) => {
                 <div className={toggleShow ? "flex flex-wrap mx-1" : "flex flex-wrap"}>
                   {
                     filteredproucts?.length > 0 ? filteredproucts?.map(product => (<Cardproduct product={product} key={product._id} toggleShow={toggleShow} />)):
-                    (filteredall?.map(product => (<Cardproduct product={product} key={product._id} toggleShow={toggleShow} />)))
+                    (filteredall?.map(product => (<Cardproduct  product={product} key={product._id} toggleShow={toggleShow} />)))
                   }
                 </div>
           </section>
