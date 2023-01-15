@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import website from "../../website.json"
 import { useTranslation} from 'react-i18next';
 import { Modal, useModal} from "@nextui-org/react";
@@ -13,7 +13,7 @@ const Product = ({product}) => {
   const [t,i18n] = useTranslation()
   const lang = i18n.language
   const { setVisible, bindings } = useModal();
-  
+  const [showcount,SetShowCount] = useState(false)
   return (
        <>   
            <Link to={`/${lang}/products?name=${product.url_alias}`} onClick={()=> setVisible(true)}>
@@ -40,7 +40,7 @@ const Product = ({product}) => {
               aria-describedby="modal-description"
               {...bindings} 
               >
-              <ProductPopup setVisible={setVisible} product={product} />
+              <ProductPopup setVisible={setVisible} product={product} showcount={showcount}  />
            </Modal>
         
     </>

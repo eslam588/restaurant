@@ -64,11 +64,11 @@ function App() {
     
     <div style={showbasket ? {marginBottom :"120px"} : {marginBottom :"60px"}}>
       <Routes>
-              <Route path="/" element={ <Navigate to={`/${currentLanguage.code}`} />}/>
-              <Route path={`/${currentLanguage.code}`} element={<Home langs={languages} currentLanguage={currentLanguage} />} />
-              <Route path={`/${currentLanguage.code}/:products`} element={<Home langs={languages} 
-              currentLanguage={currentLanguage} />} />
-              <Route  path="*" element={ <NotFoundpage /> } />
+                  <Route path="/" element={ <Navigate to={`/${currentLanguage.code}`} />}/>
+                  <Route path={`/${currentLanguage.code}`} element={<Home langs={languages} currentLanguage={currentLanguage} />} />
+                  <Route path={`/${currentLanguage.code}/:products`} element={<Home langs={languages} 
+                  currentLanguage={currentLanguage} />} />
+                  {/* <Route  path="*" element={ <NotFoundpage /> } /> */}
       </Routes>
     </div>
   );

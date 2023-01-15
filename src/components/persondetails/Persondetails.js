@@ -13,6 +13,8 @@ const Persondetails = ({setVisibleee}) => {
 
 let dispatch = useDispatch()
 const [countrycode,setCountryCode]= useState("")
+const [countryname,setCountryName]= useState("")
+
 const [phonecode,setPhoneCode]= useState("")
 const [countryerror, setCountryError] = useState("")
 const [t,i18n] = useTranslation()
@@ -301,10 +303,12 @@ let allcountrycodes = [
      }
     
   }
+
   
   let loopselectedoption = () => { 
     return  allcountrycodes.map(country => {
         if(country[0] === countrycode){
+            setCountryName(t(country[0]))
             setPhoneCode(country[1])
         }
         return (
@@ -319,7 +323,7 @@ let allcountrycodes = [
   }, [countrycode,phonecode])
 
 let handleSubmit = async(data) => {
-//    console.log(data);
+      console.log(data);
 //    await axios.post()
 }
 
@@ -357,7 +361,7 @@ let hiddenlocation = () => {
             </Modal>
               
             <Formik
-            initialValues={{ name:"", phone:"", address:"", email: '',accept:false, countrycode:""}}
+            initialValues={{name:"",countrycode:"",countryname:"",phonecode:"", phone:"" ,address:"", email: '', accept:false}}
             validate={values => {
                 const errors = {};
                 // validation name
@@ -439,6 +443,8 @@ let hiddenlocation = () => {
             </select>
 
         </div> 
+        <input  type="hidden" name="countryname"  value={values.countryname=countryname}  />
+        <input  type="hidden" name="phonecode"  value={values.phonecode=phonecode}  />
         <div className="js-form-item form-item js-form-type-tel form-item-phone js-form-item-phone">
             <label for="edit-phone" className="js-form-required form-required formphonecode">{phonecode && phonecode }</label>
             <input autocomplete="off" data-drupal-selector="edit-phone" type="tel" id="edit-phone" name="phone" size="30" placeholder={t('form-phone')}  aria-required="true" onChange={handleChange} onBlur={handleBlur}  

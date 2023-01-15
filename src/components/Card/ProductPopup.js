@@ -5,7 +5,7 @@ import { useTranslation} from 'react-i18next';
 import { Link } from 'react-router-dom';
 import {CloseIcon} from "../../components/SVG/CartIconSvg"
 
-const ProductPopup = ({setVisible,product,increment,decrement,addtocart,quan,showquan}) => {
+const ProductPopup = ({setVisible,product,increment,decrement,addtocart,quan,showquan,showcount}) => {
 
 
 const [t,i18n] = useTranslation()
@@ -33,7 +33,8 @@ return (
              <h3 className="product-popup-name">{product.name[lang]}</h3>
             <p className="product-popup-description">{product.description[lang]}</p>
             <div className="product-popup-price">
-                <span><span>{website.currency[lang]}</span>{product.price}</span>
+                <span><span>{website.currency[lang]}</span>{product.price}</span>  
+                <div className="hidequan">
                {
                 !showquan ? (
                 <div className='add-item' onClick={()=> addtocart(product)}>
@@ -51,6 +52,7 @@ return (
                     </div>
                 )
                 }
+                </div>
              </div>
         </div>
     </div>

@@ -11,6 +11,12 @@
 }
 
 
+.product-cover .product-popup-price .hidequan {
+    color:red;
+    display:none !important;
+}
+
+
 .nextui-c-cgxxHA-iNZaNK-closeButton-true {
     padding-top: 0;
 }

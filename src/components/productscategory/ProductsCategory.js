@@ -9,9 +9,12 @@ const ProductsCategory = ({filteredproucts,toggleShow,filteredall,catname}) => {
   const lang = i18n.language
 
   const handleScroll = () => {
-    // console.log(window.pageXOffset);
-    const scroll = document.getElementById("1")?.scrollTop;
-    console.log(scroll);
+    const scrollposition = document.documentElement.scrollTop;
+    const scroll = document.getElementById("3")?.offsetTop;
+    if(scrollposition >= scroll && scrollposition < scroll + scroll.offsetHeight) {
+      console.log("eslam");
+    }
+    
  
 };
 
