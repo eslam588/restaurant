@@ -1,12 +1,13 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useRef} from 'react'
 import Cardproduct from '../Card/Cardproduct'
 import { useTranslation} from 'react-i18next';
 
-const ProductsCategory = ({filteredproucts,toggleShow,filteredall,catname}) => {
+const ProductsCategory = ({filteredproucts,toggleShow,filteredall,catname,setPositionn}) => {
 
 
   const [t,i18n] = useTranslation()
   const lang = i18n.language
+  const ref = useRef()
 
   const handleScroll = () => {
     const scrollposition = document.documentElement.scrollTop;
@@ -19,17 +20,19 @@ const ProductsCategory = ({filteredproucts,toggleShow,filteredall,catname}) => {
 };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
+     window.addEventListener('scroll', handleScroll, { passive: true });
+    setPositionn(prev => ({...prev , [catname?._id]:ref?.current?.offsetTop}) )
+    // setPositionn({[catname?._id]:ref.current.offsetTop})
     return () => {
         window.removeEventListener('scroll', handleScroll);
-    };
+    };   
 }, []);
 
 
   
   return (
 
-    <div className="products-container" id={catname?._id}>
+    <div className="products-container" id={catname?._id}  ref={ref}>
         <div data-drupal-messages-fallback className="hidden"></div>		
             <section className="product-section border-b-10 border-black-100 pb-2">
                 <h2 className="pt-3 pb-2 px-4 text-xl line-normal font-extrabold mb-1">

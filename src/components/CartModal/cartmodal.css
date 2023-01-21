@@ -15,3 +15,11 @@
   .basket-screen span.itemTotal:lang(ar){
     text-align: left;
   }
+
+  .basket-total{
+    padding-bottom:250px;
+  }
+
+  .basket-screen .charges span{
+    margin-left:5px;
+  }

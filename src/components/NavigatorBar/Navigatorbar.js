@@ -8,7 +8,7 @@ import { useTranslation} from 'react-i18next';
 
 
 
-const Navigatorbar = ({toggleShow,setToggleShow}) => {
+const Navigatorbar = ({toggleShow,setToggleShow,isActive,setIsActive}) => {
 
    const [showsearch, setShowSearch]=useState(false)
    const[keyword,setKeyword]=useState("")
@@ -25,15 +25,14 @@ const Navigatorbar = ({toggleShow,setToggleShow}) => {
       setKeyword("")
    }
 
-   const [isActive, setIsActive] = useState(false);
+   // const [isActive, setIsActive] = useState(false);
 
    let handleItemClick=(index) =>{
       setIsActive(index);
   }
+
+
    
-
-
-
   return (
     <div className="navigation-bar shadow">
             {
@@ -59,7 +58,7 @@ const Navigatorbar = ({toggleShow,setToggleShow}) => {
                         {
                            categories.map((cat,i)=> {
                               return (
-                                 <a  href={`#${cat._id}`} className={`nav-category_link ${isActive === i ? "active" : "" }`} onClick={()=>handleItemClick(i)}>
+                                 <a  href={`#${cat._id}`} className={`nav-category_link ${isActive == cat._id ? "active" : "" }`} onClick={() => handleItemClick(i)}>
                                    <span key={i} className="nav-category_label">{cat.type[lang]}</span>
                                  </a>
                               )

@@ -9,6 +9,7 @@ import "./styles/appltr.css"
 import website from "./website.json"
 import { detectionLang } from './redux/productSlice';
 import NotFoundpage from './pages/Notfoundpage/NotFoundpage';
+import OrderRequest from './pages/orderRequest/OrderRequest';
 
 
 
@@ -30,21 +31,18 @@ function App() {
     setLocationPath(pathn)
   }, [location])
 
-
-
   let currentLanguageCode = cookies.get('i18next') || "en"
+  let currentlang = cookies.get('i18next') || "en"
   if(locationpath){
     currentLanguageCode = locationpath
   }
-  
-   const currentLanguage = website.languages.find(l => l.code === currentLanguageCode)
-   const [nolang , setNoLang] = useState(true)
+   let currentLanguage = website.languages.find(l => l.code === currentLanguageCode)
    if(!currentLanguage){
-      setNoLang(false)
+    currentLanguage = website.languages.find(l => l.code === currentlang)
    }
 
+
    useEffect(() => {
-    if(nolang){
       if (currentLanguage.code === "ar") {
         document.body.dir = 'rtl'
       }
@@ -55,20 +53,30 @@ function App() {
       dispatch(detectionLang(currentLanguage?.code))
       i18n.changeLanguage(currentLanguage?.code)
       document.title = website.title[currentLanguage?.code]
-    }
 
   },[currentLanguage?.code])
+
+
+  let branch = sessionStorage.getItem("branch") ;
+  let areaname = sessionStorage.getItem('areaname')
+  const [activepage,setActivePage] = useState((branch || areaname) ? true : false)
+  
+  useEffect(() => {
+    if(branch || areaname){
+        setActivePage(true)
+    }
+  },[])
  
   return (
     
     
     <div style={showbasket ? {marginBottom :"120px"} : {marginBottom :"60px"}}>
       <Routes>
-                  <Route path="/" element={ <Navigate to={`/${currentLanguage.code}`} />}/>
-                  <Route path={`/${currentLanguage.code}`} element={<Home langs={languages} currentLanguage={currentLanguage} />} />
+                  <Route exact path="/" element={ <Navigate to={`/${currentLanguage.code}`} />}/>
+                  <Route path={`/${currentLanguage.code}`} element={(branch || areaname) && activepage ? <Home langs={languages} currentLanguage={currentLanguage} /> : <OrderRequest setActivePage={setActivePage} activepage={activepage} langs={languages} currentLanguage={currentLanguage} />} />
                   <Route path={`/${currentLanguage.code}/:products`} element={<Home langs={languages} 
                   currentLanguage={currentLanguage} />} />
-                  {/* <Route  path="*" element={ <NotFoundpage /> } /> */}
+                  <Route  path="*" element={ <NotFoundpage /> } />
       </Routes>
     </div>
   );

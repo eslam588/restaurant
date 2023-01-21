@@ -1,0 +1,115 @@
+.order-request{
+    margin-bottom:-60px;
+}
+.order-request .container{
+    background-color:white;
+}
+.order-request{
+    width:100%;
+    height:100vh;
+    positionLrel:relative
+}
+
+.order-request .order-header{
+    display:flex;
+    justify-content:space-between; 
+
+}
+.order-request .order-header .nextui-c-kRHeuF{
+    left:0px;
+}
+
+.order-request .order-header .nextui-c-kRHeuF:lang(ar){
+    right:0px;
+}
+
+.order-request h1 {
+    padding-top:50px;
+    padding-bottom:40px;
+    text-align: center;
+}
+
+.order-request .container > p {
+    padding-bottom:60px;
+    text-align: center;
+}
+
+
+.order-request .orders-buttons{
+    display:flex; 
+    justify-content:space-evenly;    
+}
+
+.order-request .orders-buttons button  {
+    display:inline-block;
+    border:2px solid var(--color-primary);
+    padding:5px 50px;
+    border-radius:10px;
+}
+.order-request .orders-buttons button:hover,
+.order-request .btn-active {
+    background-color:var(--color-primary);
+    color:white;
+}
+
+.order-request .order-options{
+    padding:30px 50px
+}
+
+.pickup-comp h2{
+    margin-bottom:10px;
+    padding-bottom:10px;
+    border-bottom:2px solid #ccc;
+    font-weight:bolder;
+    position:relative;
+   
+
+}
+.pickup-comp .pichup-branch{
+    cursor: pointer;
+    display:flex;
+    align-items:center;
+}
+.pickup-comp .pichup-branch span:hover{
+    font-weight: bold;
+}
+
+.pickup-comp .pichup-branch > img{
+    display: inline-block;
+    width:40px;
+    height:40px;
+}
+
+.delivery-comp .header-select{
+    margin-bottom:15px;
+}
+.delivery-comp .select-area:hover{
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.delivery-comp  .area-name svg{
+    display : inline-block;
+    width:10px;
+    height:10px;
+    cursor:pointer;
+    margin-left:5px
+
+}
+
+.delivery-comp  .no-delivery{
+    position:absolute;
+    width:100%;
+    left:0;
+    right:0;
+    bottom:40px;
+    text-align:center;
+    
+}
+
+
+.order-request .nextui-c-kRHeuF{
+    position:relative;
+    /* top:10px;
+    left:10px; */
+}

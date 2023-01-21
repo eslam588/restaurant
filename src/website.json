@@ -15,6 +15,10 @@
   "location":"https://goo.gl/maps/6Tyrp8ooZFfQZhL39",
   "whatsapp":"https://wa.me/971502385613",
   "call":"tel:0502385613",
+  "branches":[{"en":"benha","ar":"بنها"},{"en":"dokki","ar":"الدقى"},{"en":"maaid","ar":"المعادى"}],
   "languages": [{"name":"English","code":"en"},{"name":"عربى","code":"ar"},{"name":"French","code":"fr"}],
-  "currency":{"en": "AED","ar": "د.إ" }
+  "currency":{"en": "AED","ar": "د.إ" },
+  "WorkingHours":[],
+  "TimeZone":[],
+  "scadule":[]
 }

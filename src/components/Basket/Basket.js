@@ -12,8 +12,10 @@ const Basket = ({showbasket}) => {
 
   const cartState = useSelector((state) => state.cart);
   const {hiddencart}= useSelector((state) => state.lang);
-  let {cartItemsnum , totalCount} = cartState; 
+  let {cartItemsnum , totalCount,minOrder} = cartState; 
   const { setVisible, bindings } = useModal();
+  const [ordbasketerr , setOrdBasketErr]=useState(false)
+  const [checktotal,setCheckTotal] = useState(false);
 
   const [t,i18n] = useTranslation()
   const lang = i18n.language
@@ -32,12 +34,36 @@ const Basket = ({showbasket}) => {
       };
   }, []);
 
+  let handlebasket = () => {
+    if(totalCount < minOrder){
+        setVisible(false)
+        setCheckTotal(true)
+    }
+    else{
+       setVisible(true)
+       setCheckTotal(false)
+    }
+   
+  }
+
+
+  useEffect(()=> {
+    if(checktotal && totalCount < minOrder){
+        setOrdBasketErr(true)
+    }
+    else{
+        setOrdBasketErr(false)
+    }
+  },[checktotal,totalCount])
+
 
   return (
     <div className= {`bg-white shadow py-3 contacts-bottom ${scrollPosition> "460" ? "active" : ""}`}>
-        <small className="basket-error mb-2 px-4 visually-hidden"></small>
+        {
+            ordbasketerr && <small className="basket-error mb-2 px-4" >Sorry, minimum order can not be less than {minOrder}</small>
+        }
         <div id="view-basket" className={`cart ${showbasket ? "active" : ""}`}> 
-        <div flat="true" auto="true" onClick={() => setVisible(true)}>
+        <div flat="true" auto="true" onClick={handlebasket}>
             <div className="basket-txt"> {t('basket')}</div>
             <div className="basket">
               <span id="sum"><span>{wesite.currency[lang]}</span>{totalCount.toFixed(2)} </span>
@@ -55,7 +81,7 @@ const Basket = ({showbasket}) => {
               aria-describedby="modal-description"
               {...bindings} 
               >
-              <CartModal setVisiblee={setVisible} />
+              <CartModal setVisiblee={setVisible}  />
               </Modal>
             
            

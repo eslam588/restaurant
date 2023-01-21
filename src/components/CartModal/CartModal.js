@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
 import {CloseIcon,RemoveIcon,AddIcon} from "../../components/SVG/CartIconSvg"
 import {useSelector,useDispatch} from 'react-redux';
 import website from "../../website.json"
@@ -8,13 +8,15 @@ import { useTranslation,Trans } from 'react-i18next';
 import { Modal, useModal} from "@nextui-org/react";
 import Location from '../Location/Location';
 import "./cartmodal.css"
+import Persondetails from './../persondetails/Persondetails';
 
 
 const CartModal = ({setVisiblee}) => {
 
     const cartState = useSelector((state) => state.cart);
-    let {cartItemsnum,totalCount,itemsInCart,showCartPage} = cartState; 
-
+    let {cartItemsnum,totalCount,itemsInCart,showCartPage,Deliverycharges,minOrder} = cartState; 
+   
+    console.log(Deliverycharges);
     const dispatch = useDispatch();
     const increment = (product) => {
         dispatch(incrementCart(product))
@@ -27,6 +29,8 @@ const CartModal = ({setVisiblee}) => {
     const lang = i18n.language
 
     const {hiddencart}= useSelector((state) => state.lang);
+    const [ordbasketerr , setOrdBasketErr]=useState(false)
+    const [checktotal,setCheckTotal] = useState(false);
   
    
   // filter product
@@ -38,6 +42,27 @@ const CartModal = ({setVisiblee}) => {
     }
 
   const { setVisible, bindings } = useModal();
+
+  let handlesubmit = () => {
+    if(totalCount < minOrder){
+      setVisible(false)
+      setCheckTotal(true)
+  }
+  else{
+     setVisible(true)
+     setCheckTotal(false)
+  }  
+   
+ }
+
+ useEffect(()=> {
+  if(checktotal && totalCount < minOrder){
+      setOrdBasketErr(true)
+  }
+  else{
+      setOrdBasketErr(false)
+  }
+},[checktotal,totalCount])
   
   return (
     <>
@@ -97,21 +122,25 @@ const CartModal = ({setVisiblee}) => {
             <div className="flex pb-2">
               <div className="w-full">{t('charges')}
               </div>
-              <div className="text-right">{t('discount')}</div>
+              <div className="text-right charges">{website.currency[lang]}<span>{Deliverycharges}</span></div>
             </div>
             <div className="flex pt-3 pb-2">
               <div className="w-full">{t('Total')}
                 <small> ({t('cartVat')})</small>
               </div>
-              <div id="total-sum" className="text-right min-w-28"><span>{website.currency[lang]}</span>{totalCount?.toFixed(2)}</div>
+              <div id="total-sum" className="text-right min-w-28"><span>{website.currency[lang]}</span>
+              {(totalCount + Deliverycharges)}</div>
             </div>
           </div>
           <div className="placeOrder bg-white w-full">
-            <small className="placeOrder-error mb-2 px-4 "></small>
-           <div onClick={() => setVisible(true)}>
+            {
+              ordbasketerr &&  <small className="placeOrder-error mb-2 px-4 ">Sorry, minimum order can not be less than {minOrder}</small>
+            }
+           
+           <div onClick={handlesubmit}>
                <span className="placeOrder-txt">{t('Checkout')}</span>
            </div>
-           <Modal
+           {/* <Modal
               scroll
               fullScreen
               closeButton
@@ -120,7 +149,17 @@ const CartModal = ({setVisiblee}) => {
               {...bindings}
              >
             <Location setVisiblee={setVisible} />
-           </Modal>
+           </Modal> */}
+            <Modal
+              scroll
+              fullScreen
+              closeButton
+              aria-labelledby="modal-title"
+              aria-describedby="modal-description"
+              {...bindings}
+            >
+              <Persondetails setVisiblee={setVisible} />
+            </Modal>
           </div>
       </div>
       </div>) : (setVisiblee(false))

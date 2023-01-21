@@ -1,10 +1,14 @@
 import React from 'react'
+import "./notfoundpage.css"
+
 
 const NotFoundpage = () => {
 
   return (
-    <div>
-        <p>not foundddddddddkkkkkkkkkkkkkkkkkkkkkkkd</p>
+    <div className='container'>
+      <div className='error-page'>
+          <p>Error 404</p>
+      </div>
     </div>
   )
 }

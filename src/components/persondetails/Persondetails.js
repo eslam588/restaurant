@@ -9,7 +9,7 @@ import { Modal, useModal} from "@nextui-org/react";
 import CompleteOrder from './../completeorder/CompleteOrder';
 
 
-const Persondetails = ({setVisibleee}) => {
+const Persondetails = ({setVisiblee}) => {
 
 let dispatch = useDispatch()
 const [countrycode,setCountryCode]= useState("")
@@ -329,7 +329,7 @@ let handleSubmit = async(data) => {
 
 
 let hiddenlocation = () => {
-    setVisibleee(false)
+    setVisiblee(false)
     dispatch(hiddenLocation())
     dispatch(hiddenCart())
     setTimeout(() => {

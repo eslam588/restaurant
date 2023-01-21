@@ -125,7 +125,8 @@ button {
   background-color: transparent;
   background-image: none;
 }
-[role="button"],
+/* [role="button"] */
+
 button {
   cursor: pointer;
 }

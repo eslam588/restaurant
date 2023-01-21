@@ -8,7 +8,7 @@
                         "ar": "امريكانو مشرورببببب"},
         "price":18.70,
         "category_id":1,
-        "url_alias":"Americano"    
+        "url_alias":"americano"    
     },
     {
         "_id":"2",
@@ -19,7 +19,7 @@
                         "ar": " ببلتةناكافيه لاتي"},
         "price":18.90,
         "category_id":[1,2],
-        "url_alias":"Cafe-Latte"
+        "url_alias":"cafe-latte"
 
     },
     {
@@ -31,7 +31,7 @@
                         "ar": "امريعصير أفوكادو وسكانو"},
         "price":23.80,
         "category_id":2,
-        "url_alias":"Medium-Avocado-Juice"
+        "url_alias":"medium-avocado-juice"
     },
     {
         "_id":"4",
@@ -42,7 +42,7 @@
                          "ar": "امريكانو"},
         "price":19.80,
         "category_id":2,
-        "url_alias":"Medium-Lemon-Juice"
+        "url_alias":"medium-lemon-juice"
     },
     {
         "_id":"5",
@@ -53,7 +53,7 @@
                         "ar": "امريكانو"},
         "price":19.80,
         "category_id":2,
-        "url_alias":"Medium-Orange-Juice"
+        "url_alias":"medium-orange-juice"
     },
     {
         "_id":"6",
@@ -64,7 +64,7 @@
                          "ar": "امريكانو"},
         "price":26.25,
         "category_id":3,
-        "url_alias":"Classic-Chicken-Sandwich"
+        "url_alias":"classic-chicken-sandwich"
     },
     {
         "_id":"7",
@@ -75,7 +75,7 @@
                         "ar": "امريكانو"},
         "price":26.25,
         "category_id":3,
-        "url_alias":"Classic-Sandwich"
+        "url_alias":"classic-sandwich"
     },
     {
         "_id":"8",
@@ -86,7 +86,40 @@
                        "ar": "امريكانو"},
         "price":26.25,
         "category_id":3,
-        "url_alias":"The-Brioche-Sando"
+        "url_alias":"the-brioche-sando"
+    },
+    {
+        "_id":"9",
+        "sku":"s0008p",
+        "name":{"en": "The Brioche Sando","ar": "بريوش ساندو"},
+        "image":"https://demo.zmatjar.com/files/styles/medium/public/demo/products/product-021.jpeg?itok=Q_uQUsL3",
+        "description":{"en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill", 
+                       "ar": "امريكانو"},
+        "price":26.25,
+        "category_id":4,
+        "url_alias":"the-brioche-sando"
+    },
+    {
+        "_id":"10",
+        "sku":"s0008p",
+        "name":{"en": "The Brioche Sando","ar": "بريوش ساندو"},
+        "image":"https://demo.zmatjar.com/files/styles/medium/public/demo/products/product-021.jpeg?itok=Q_uQUsL3",
+        "description":{"en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill", 
+                       "ar": "امريكانو"},
+        "price":26.25,
+        "category_id":4,
+        "url_alias":"the-brioche-sando"
+    },
+    {
+        "_id":"11",
+        "sku":"s0008p",
+        "name":{"en": "The Brioche Sando","ar": "بريوش ساندو"},
+        "image":"https://demo.zmatjar.com/files/styles/medium/public/demo/products/product-021.jpeg?itok=Q_uQUsL3",
+        "description":{"en":"Buttermilk Fried Chicken, Shredded Iceberg Lettuce, House Sauce, Homemade Dill", 
+                       "ar": "امريكانو"},
+        "price":26.25,
+        "category_id":4,
+        "url_alias":"the-brioche-sando"
     }
 ]
 
