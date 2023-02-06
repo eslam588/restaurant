@@ -12,17 +12,15 @@ const ProductsCategory = ({filteredproucts,toggleShow,filteredall,catname,setPos
   const handleScroll = () => {
     const scrollposition = document.documentElement.scrollTop;
     const scroll = document.getElementById("3")?.offsetTop;
-    if(scrollposition >= scroll && scrollposition < scroll + scroll.offsetHeight) {
-      console.log("eslam");
-    }
-    
- 
+    // if(scrollposition >= scroll && scrollposition < scroll + scroll.offsetHeight) {
+    //   console.log("eslam");
+    // }
 };
 
   useEffect(() => {
      window.addEventListener('scroll', handleScroll, { passive: true });
-    setPositionn(prev => ({...prev , [catname?._id]:ref?.current?.offsetTop}) )
-    // setPositionn({[catname?._id]:ref.current.offsetTop})
+    //  setPositionn(prev => ({...prev,[catname?._id]:ref?.current?.offsetTop}))
+    //setPositionn({[catname?._id]:ref.current.offsetTop})
     return () => {
         window.removeEventListener('scroll', handleScroll);
     };   

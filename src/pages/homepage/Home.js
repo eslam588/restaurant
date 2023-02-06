@@ -70,55 +70,7 @@ const Home = ({langs,currentLanguage}) => {
         <div className="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas> 
         <div className="container">  
            <DropDownLang langs={langs}  currentLanguage={currentLanguage} />
-          {/* {
-            langs.length > 2 ? (
-              
-                  <Grid.Container gap={1.5} justify="flex-start">
-                    <Grid xs={12}>
-                      <Grid>
-                        <Dropdown>
-                          <Dropdown.Button color={selectedColor}>
-                              {currentLanguage.name}
-                          </Dropdown.Button>
-                          <Dropdown.Menu
-                            color={selectedColor}
-                            variant="shadow"
-                            aria-label="Actions"
-                          >
-                            {
-                              langs.map((lang,i)=> {
-                                return (
-                                      <Dropdown.Item key={i} className={lang.name == currentLanguage.name ? "nextui-c-kpzpMf-hXNyUb-cv" :""}  > 
-                                         <Link to={`/${lang.code}`} onClick={()=> i18n.changeLanguage(lang.code)}>
-                                          <p className='dropdown-p' >{lang.name}</p>
-                                        </Link>
-                                        
-                                      </Dropdown.Item>
-                                )
-                              })
-                            }
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </Grid>
-                    </Grid>
-                  </Grid.Container>
-            ):(
-             <ul className="links">
-            {
-              langs.map((lag,i)=> {
-                return(
-                  <li key={i} className={lag.code !== currentLanguage.code ? "" : "is-active"}  >
-                   <Link to={`/${lag.code}`} onClick={()=> i18n.changeLanguage(lag.code)}  className={lag.code !== currentLanguage.code ? "language-link" : "language-link session-active is-active" }
-                      >{lag.name}</Link>
-                 </li>
-                )
-                
-              })
-            }
-          </ul>
-          )
-          } */}
-          <LandingPage/>
+           <LandingPage/>
           <div className ="contacts bg-white shadow py-3">
            <Contact />
           </div>
@@ -142,7 +94,7 @@ const Home = ({langs,currentLanguage}) => {
                         }
                       })
                       return (
-                         <ProductsCategory toggleShow={toggleShow} filteredall={filteredall} catname={cat} setPositionn={setPositionn}  />
+                         <ProductsCategory toggleShow={toggleShow} filteredall={filteredall} catname={cat} setPositionn={setPositionn} />
                       ) 
                      }
                    )
