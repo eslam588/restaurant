@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/restaurant/static/css/main.640dcc33.css",
+    "main.js": "/restaurant/static/js/main.2e0939a7.js",
+    "static/media/DIN Next LT Arabic Regular.ttf": "/restaurant/static/media/DIN Next LT Arabic Regular.171fed37707ab42e74ac.ttf",
+    "static/media/DIN Next LT Arabic Bold.ttf": "/restaurant/static/media/DIN Next LT Arabic Bold.f1bbe25179da3a126467.ttf",
+    "static/media/ITCAvantGardeStd-Bold.otf": "/restaurant/static/media/ITCAvantGardeStd-Bold.ae1ac2af78a403d9e2aa.otf",
+    "static/media/ITCAvantGardeStd-Md.otf": "/restaurant/static/media/ITCAvantGardeStd-Md.290f587d22d3bb0320d8.otf",
+    "static/media/ITCAvantGardeStd-Bk.otf": "/restaurant/static/media/ITCAvantGardeStd-Bk.eafa982e88b2a9aef291.otf",
+    "static/media/ITCAvantGardeStd-Demi.otf": "/restaurant/static/media/ITCAvantGardeStd-Demi.d2a41ce902a1896a69f9.otf",
+    "index.html": "/restaurant/index.html",
+    "static/media/getFetch.cjs": "/restaurant/static/media/getFetch.40f37ddea2378391108f.cjs",
+    "main.640dcc33.css.map": "/restaurant/static/css/main.640dcc33.css.map",
+    "main.2e0939a7.js.map": "/restaurant/static/js/main.2e0939a7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.640dcc33.css",
+    "static/js/main.2e0939a7.js"
+  ]
+}
