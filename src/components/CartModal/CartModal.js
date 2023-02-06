@@ -37,7 +37,7 @@ const CartModal = ({setVisiblee}) => {
   let productName = (id,products) => {
       let product = products.find((prod)=> prod._id === id)
       return(
-        <span className="title">{product.name[lang]}</span>
+        <span className="title">{product?.name[lang]}</span>
       )
     }
 
@@ -78,7 +78,7 @@ const CartModal = ({setVisiblee}) => {
           </h4>
           <div id="order-basket" className="border-b-5 border-black-100 view-order pt-20 px-4">
              {
-                cartItemsnum > 0 && itemsInCart.map(prod => {
+                cartItemsnum > 0 && itemsInCart?.map(prod => {
                   return (
                     <div id="7" className="mb-5 product-separator" data-title="Cafe Latte" data-price="18.9">
                         {
